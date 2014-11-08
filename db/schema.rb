@@ -11,7 +11,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108050311) do
+ActiveRecord::Schema.define(version: 20141108072653) do
+
+  create_table "cities", force: true do |t|
+    t.integer "code"
+    t.string  "name",         null: false
+    t.integer "provinces_id"
+  end
+
+  create_table "grades", force: true do |t|
+    t.integer "code"
+    t.string  "name", null: false
+  end
+
+  create_table "hospitals", force: true do |t|
+    t.string   "name",                      null: false
+    t.integer  "provinces_id"
+    t.string   "provinces_name", limit: 31
+    t.integer  "cities_id"
+    t.string   "cities_name",    limit: 31
+    t.string   "address",                   null: false
+    t.integer  "grades_id"
+    t.string   "grades_name",    limit: 31
+    t.integer  "majors_id"
+    t.string   "majors_name",    limit: 31
+    t.string   "phone"
+    t.text     "introduction"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "majors", force: true do |t|
+    t.integer "code"
+    t.string  "name",         limit: 31, null: false
+    t.text    "introduction"
+  end
+
+  create_table "provinces", force: true do |t|
+    t.integer "code"
+    t.string  "name", null: false
+  end
 
   create_table "users", force: true do |t|
     t.string   "username"
