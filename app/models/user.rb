@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
     end
     if User.exists? email:self.email
       @json = {:status => 0, :error => '该邮箱被占用'}
-      return '邮箱已被占用'
+      return false
     end
     unless self.email =~ /^\w+@([a-z]+\.)+[a-z]+$/i
       return '邮箱填写错误'
