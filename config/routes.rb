@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resource 'user'
-  post 'user/login' => 'user#login'
+
+  get 'users/index' => 'users#index'
+  resource :users
+  post 'users/login' => 'users#login'
+  get 'users/show' => 'users#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,5 +1,5 @@
 <div class="">
-  <form id="login-form" action="/user/login">
+  <form id="login-form" action="/users/login">
     <div class="row">
       <div class="large-12 columns">
         <label>用户名
@@ -17,9 +17,13 @@
     </div>
     <div class="row">
       <div class="large-12 columns">
-        <a href="#" class="button" href='javascript:submit_form($("#login-form"),"/user/login",function(){
+        <div data-alert class="alert-box alert radius small" id="error-alerter" style="display: none">
+          <lable id="alert-info"></lable>
+          <a href="#" class="close">&times;</a>
+        </div>
+        <button class="button small" type="button" id="login-submit" href='javascript:login($("#login-form"),"users",function(){
             alert("欢迎登陆！");
-        },true);'>登陆</a>
+        },true);'>登陆</button>
       </div>
     </div>
   </form>

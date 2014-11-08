@@ -1,5 +1,6 @@
 <div class="">
-  <form id="new-form" action="/user">
+  <form id="new-form" action="/users" method="post">
+
     <div class="row">
       <div class="large-12 columns">
         <label>用户名
@@ -24,7 +25,7 @@
     <div class="row">
       <div class="large-12 columns" >
         <label>身份证号
-          <input type="text" placeholder="身份证号 large-12.columns" name="id_Card"/>
+          <input type="text" placeholder="身份证号 large-12.columns" name="id_card"/>
         </label>
       </div>
     </div>
@@ -38,25 +39,30 @@
     <div class="row">
       <div class="large-12 columns" >
         <label>密码
-          <input type="text" placeholder="请输入密码 large-12.columns" name="passwd"/>
+          <input type="password" placeholder="请输入密码 large-12.columns" name="passwd"/>
         </label>
       </div>
     </div>
     <div class="row">
       <div class="large-12 columns" >
         <label>确认密码
-          <input type="text" placeholder="请再次输入密码以确认 large-12.columns" name="repasswd"/>
+          <input type="password" placeholder="请再次输入密码以确认 large-12.columns" name="repasswd"/>
         </label>
       </div>
     </div>
     <div class="row">
       <div class="large-12 columns">
-        <a href="#" class="button" href="javascript:check_new_info();">确认注册</a>
+          <div data-alert class="alert-box alert radius small" id="error-alerter" style="display: none">
+            <lable id="alert-info"></lable>
+            <a href="#" class="close">&times;</a>
+          </div>
+        <button class="button"  type="button" id="new_submit">确认注册</button>
       </div>
     </div>
   </form>
 </div>
 
+<!--
 <script>
     function check_new_info(){
         var new_form = get_form_data($("#new-form"));
@@ -73,7 +79,7 @@
             alert("您的身份证格式不正确，请重新输入")
         }
         else{
-            submit_form(new_form,'/user',function(){
+            submit_form(new_form,'/users',function(){
                 alert("已提交注册申请");
                 window.location.href="/welcome";
             },true);
@@ -168,4 +174,4 @@
             return true;
         }
     }
-</script>
+</script>-->
