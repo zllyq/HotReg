@@ -9,23 +9,34 @@ class User < ActiveRecord::Base
       return false
     end
     unless self.email =~ /^\w+@([a-z]+\.)+[a-z]+$/i
-      return '邮箱填写错误'
+      @json = {:status => 0, :error => '邮箱格式错误'}
+      return false
     end
     if User.exists? phone:self.phone
-      return '电话号码被占用'
+      @json = {:status => 0, :error => '电话号码已被占用'}
+      return false
     end
     unless self.phone =~ /^\+?\d+$/
-      return '电话号码填写错误'
+      @json = {:status => 0, :error => '电话号码填写错误'}
+      return false
     end
 
-    if User.exists? id_card_number:self.id_card_number
-      return '身份证号已存在'
+    if User.exists? id_card:self.id_card
+      @json = {:status => 0, :error => '身份证号被占用'}
+      return false
     end
+
     unless check_id_card
-      return
+      @json = {:status => 0, :error => '身份证填写错误'}
+      return false
     end
     true
 
+  end
+
+private
+  def check_id_card
+    true
   end
 
 end
