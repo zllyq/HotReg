@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
       return false
     end
 
-    unless check_id_card
+    unless check_id_card(self.id_card)
       @json = {:status => 0, :error => '身份证填写错误'}
       return false
     end
@@ -35,8 +35,17 @@ class User < ActiveRecord::Base
   end
 
 private
-  def check_id_card
-    true
+  #校验身份证
+  def check_id_card(i)
+    unless i.length == 18
+      return false
+    end
+
+    last = ['1','0','x','9','8','7','6','5','4','3','2']
+    num = i[0] * i[6] + i[1] * i[8] + i[2] * i[9] + i[3] * i[4] + i[4] * i[7] + i[5] * i[3] +
+          i[6] * i[1] + i[7] * i[0] + i[8] * i[5] + i[9] * i[2] + i[10] * i[6] + i[11] * i[8] +
+          i[12] * i[9] + i[13] * i[4] + i[14] * i[7] + i[15] * i[3] + i[16] * i[1]
+    i[17] == last[num % 11]
   end
 
 end
