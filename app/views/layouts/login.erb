@@ -1,0 +1,33 @@
+<div class="">
+  <form id="login-form" action="/user/login">
+    <div class="row">
+      <div class="large-12 columns">
+        <label>用户名
+          <input type="text" placeholder="用户名 large-12.columns" name="username"/>
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns" >
+        <label>密码
+          <input type="text" placeholder="请输入密码 large-12.columns" name="passwd"/>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <a href="#" class="button" href='javascript:submit_form($("#login-form"),"/user/login",function(){
+            alert("欢迎登陆！");
+        },true);'>登陆</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+
+</script>
+
+
+

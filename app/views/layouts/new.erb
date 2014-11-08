@@ -1,0 +1,171 @@
+<div class="">
+  <form id="new-form" action="/user">
+    <div class="row">
+      <div class="large-12 columns">
+        <label>用户名
+          <input type="text" placeholder="用户名 large-12.columns" name="username"/>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns" >
+        <label>邮件地址
+          <input type="email" placeholder="请输入您的邮件地址 large-12.columns" name="email"/>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns" >
+        <label>姓名
+          <input type="text" placeholder="请输入您的真实姓名 large-12.columns" name="name"/>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns" >
+        <label>身份证号
+          <input type="text" placeholder="身份证号 large-12.columns" name="id_Card"/>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns" >
+        <label>手机号
+          <input type="text" placeholder="手机号 large-12.columns" name="phone"/>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns" >
+        <label>密码
+          <input type="text" placeholder="请输入密码 large-12.columns" name="passwd"/>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns" >
+        <label>确认密码
+          <input type="text" placeholder="请再次输入密码以确认 large-12.columns" name="repasswd"/>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <a href="#" class="button" href="javascript:check_new_info();">确认注册</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+    function check_new_info(){
+        var new_form = get_form_data($("#new-form"));
+        if(!is_Email(new_form.email)){
+            alert("您的邮箱地址不符合规范，请重新输入")
+        }
+        else if(new_form.passwd.length<6){
+            alert("密码长度不足，请重新输入");
+        }
+        else if(new_form.passwd!=new_form.repasswd){
+            alert("两次密码输入不一致，请重新输入");
+        }
+        else if(!isTrueValidateCodeBy18IdCard(new_form.id_Card)){
+            alert("您的身份证格式不正确，请重新输入")
+        }
+        else{
+            submit_form(new_form,'/user',function(){
+                alert("已提交注册申请");
+                window.location.href="/welcome";
+            },true);
+        }
+    }
+
+
+    function is_Email(email) {
+        //判断邮件地址可用性
+        var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+        if (!myreg.test(email)) {
+//            $("#input-email-remind").html('<img src="../../static/images/wrong.png" class="wrong"/><span style="color:red">请输入有效的Email！</span>');
+            return false;
+        }
+//        $("#input-email-remind").html('<img src="../../static/images/ok.png" class="ok"/><span style="color:green;">邮箱可用</span>');
+        return true;
+    }
+
+
+    function isTrueValidateCodeBy18IdCard(a_idCard) {
+        var sum = 0; // 声明加权求和变量
+        if (a_idCard[17].toLowerCase() == 'x') {
+            a_idCard[17] = 10;// 将最后位为x的验证码替换为10方便后续操作
+        }
+        for ( var i = 0; i < 17; i++) {
+            sum += Wi[i] * a_idCard[i];// 加权求和
+        }
+        valCodePosition = sum % 11;// 得到验证码所位置
+        if (a_idCard[17] == ValideCode[valCodePosition]) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    /**
+     * 通过身份证判断是男是女
+     * @param idCard 15/18位身份证号码
+     * @return 'female'-女、'male'-男
+     */
+    function maleOrFemalByIdCard(idCard){
+        idCard = trim(idCard.replace(/ /g, ""));// 对身份证号码做处理。包括字符间有空格。
+        if(idCard.length==15){
+            if(idCard.substring(14,15)%2==0){
+                return 'female';
+            }else{
+                return 'male';
+            }
+        }else if(idCard.length ==18){
+            if(idCard.substring(14,17)%2==0){
+                return 'female';
+            }else{
+                return 'male';
+            }
+        }else{
+            return null;
+        }
+//  可对传入字符直接当作数组来处理
+// if(idCard.length==15){
+// alert(idCard[13]);
+// if(idCard[13]%2==0){
+// return 'female';
+// }else{
+// return 'male';
+// }
+// }else if(idCard.length==18){
+// alert(idCard[16]);
+// if(idCard[16]%2==0){
+// return 'female';
+// }else{
+// return 'male';
+// }
+// }else{
+// return null;
+// }
+    }
+    /**
+     * 验证18位数身份证号码中的生日是否是有效生日
+     * @param idCard 18位书身份证字符串
+     * @return
+     */
+    function isValidityBrithBy18IdCard(idCard18){
+        var year =  idCard18.substring(6,10);
+        var month = idCard18.substring(10,12);
+        var day = idCard18.substring(12,14);
+        var temp_date = new Date(year,parseFloat(month)-1,parseFloat(day));
+        // 这里用getFullYear()获取年份，避免千年虫问题
+        if(temp_date.getFullYear()!=parseFloat(year)
+                ||temp_date.getMonth()!=parseFloat(month)-1
+                ||temp_date.getDate()!=parseFloat(day)){
+            return false;
+        }else{
+            return true;
+        }
+    }
+</script>
