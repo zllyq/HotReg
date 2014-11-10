@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
   protect_from_forgery with: :null_session
 
-  def index
+  def create_show
     @title = '在线挂号|注册'
     render 'new'
   end
 
-  def show
+  def login_show
     @title = '在线挂号|登录'
     render 'login'
   end
@@ -14,9 +14,11 @@ class UsersController < ApplicationController
 
   def create
     para = params[:users]
+
+
     user = User.new do |u|
       u.username = para[:username]
-      u.passwd = Digest::MD5.hexdigest(param[:passwd])
+      u.passwd = Digest::MD5.hexdigest(para[:passwd])
       u.name = para[:name]
       u.email = para[:email]
       u.id_card = para[:id_card]
@@ -41,7 +43,6 @@ class UsersController < ApplicationController
       return false
     end
     user = User.find_by_username param[:username]
-    pa = Digest::MD5.hexdigest(param[:passwd])
     unless user.passwd == Digest::MD5.hexdigest(param[:passwd])
       render :json => {:status => 0,:error => '用户名或密码输入错误'}
       return false

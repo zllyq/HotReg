@@ -1,32 +1,36 @@
 <div class="">
-  <form id="new-form" action="/users" method="post">
+  <form id="new-form" action="/users" method="post" data-abide>
 
     <div class="row">
       <div class="large-12 columns">
         <label>用户名
-          <input type="text" placeholder="用户名 large-12.columns" name="username"/>
+          <input type="text" required placeholder="用户名 large-12.columns" name="username"/>
         </label>
+        <small class="error">请输入由字母、数字组成的用户名</small>
       </div>
     </div>
     <div class="row">
-      <div class="large-12 columns" >
+      <div class="large-12 columns email-field">
         <label>邮件地址
-          <input type="email" placeholder="请输入您的邮件地址 large-12.columns" name="email"/>
+          <input type="email" placeholder="请输入您的邮件地址 large-12.columns" name="email" required/>
         </label>
+        <small class="error">请输入正确的邮件地址</small>
       </div>
     </div>
     <div class="row">
       <div class="large-12 columns" >
         <label>姓名
-          <input type="text" placeholder="请输入您的真实姓名 large-12.columns" name="name"/>
+          <input type="text" placeholder="请输入您的真实姓名 large-12.columns" name="name" required/>
         </label>
       </div>
+      <small class="error">请输入真实姓名</small>
     </div>
     <div class="row">
       <div class="large-12 columns" >
         <label>身份证号
           <input type="text" placeholder="身份证号 large-12.columns" name="id_card"/>
         </label>
+        <small  class="error">请输入正确的身份证号码</small>
       </div>
     </div>
     <div class="row">

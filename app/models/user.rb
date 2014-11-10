@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+
+
   def json
     @json
   end

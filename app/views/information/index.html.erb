@@ -1,0 +1,95 @@
+<form action="/information/create_hospital">
+  <div class="row">
+    <div class="small-12">
+      <label>
+        名称
+        <input name="name" type="text" placeholder="医院名称" required>
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+        <div class="small-5 column">
+            <label>
+                省份
+                <input name="provinces_id" type="hidden">
+                <select name="provinces_name" id="provinces-select">
+                    <option></option>
+                </select>
+            </label>
+        </div>
+
+    <div class="small-5 column">
+      <label>
+        城市
+        <input name="cities_id" type="hidden">
+        <select name="cities_name" id="provinces-select">
+          <option></option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-5 column">
+      <label>
+        分级
+        <input name="grades_id" type="hidden">
+        <input name="grades_name" type="text" placeholder="选择医院分级">
+      </label>
+    </div>
+    <div class="small-5 column">
+      <label>
+        专业
+        <input name="majors_id" type="hidden">
+        <input name="majors_name" type="text" placeholder="选择医院专业">
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-5 column">
+      <label>
+        地址
+        <input name="address" type="text" placeholder="输入地址">
+      </label>
+    </div>
+
+    <div class="small-5 column">
+      <label>
+        电话
+        <input name="phone" type="text" placeholder="输入联系电话">
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12">
+      <label>
+        简介
+        <input name="introduction" type="text" placeholder="输入医院简介">
+      </label>
+    </div>
+  </div>
+
+  <button type="button" id="hospital-submit" class="button small success">提交</button>
+  <button type="submit" class="button small success">提交</button>
+</form>
+<script type="text/coffeescript">
+    fill_up_select = (data,select) ->
+        select.append($("<option value='#{line.name}' data-id=#{line.id}>#{line.name}</option>")) for line in data
+
+    load_provinces = () ->
+        ajax_post('/information/provinces',{},(data) -> fill_up_select(data.data,$('#provinces-select')))
+
+    $('select').change(
+            () ->
+                selected = $(this).find("option")
+                alert(selected.data('id'))
+                $(this).attr('data-id',selected.data('id'))
+
+    )
+
+    $(window).ready(load_provinces)
+
+</script>

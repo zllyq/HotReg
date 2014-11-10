@@ -184,6 +184,7 @@
     <orderEntry type="library" scope="PROVIDED" name="turbolinks (v2.5.1, ruby-2.0.0-p451) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v1.2.2, ruby-2.0.0-p451) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uglifier (v2.5.3, ruby-2.0.0-p451) [gem]" level="application" />
+    <orderEntry type="library" name="foundation-DefinitelyTyped" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
     <LOAD_PATH number="0" />
