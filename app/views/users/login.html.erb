@@ -1,32 +1,44 @@
-<div class="">
-  <form id="login-form" action="/users/login">
-    <div class="row">
-      <div class="large-12 columns">
-        <label>用户名
-          <input type="text" placeholder="用户名 large-12.columns" name="username"/>
-        </label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="large-12 columns" >
-        <label>密码
-          <input type="text" placeholder="请输入密码 large-12.columns" name="passwd"/>
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">
-        <div data-alert class="alert-box alert radius small" id="error-alerter" style="display: none">
-          <lable id="alert-info"></lable>
-          <a href="#" class="close">&times;</a>
+<div class="full-screen-blur">
+  <div class="login-window">
+    <form id="login-form" action="/users/login">
+      <div class="row">
+        <div class="large-12 columns">
+          <label>用户名
+            <input type="text" placeholder="用户名" name="username"/>
+          </label>
         </div>
-        <button class="button small" type="button" id="login-submit" href='javascript:login($("#login-form"),"users",function(){
+      </div>
+
+      <div class="row">
+        <div class="large-12 columns" >
+          <label>密码
+            <input type="text" placeholder="请输入密码" name="passwd"/>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-4 columns">
+
+        </div>
+        <div class="large-8 columns">
+          <div data-alert class="alert-box alert radius small" id="error-alerter" style="display: none">
+            <lable id="alert-info"></lable>
+            <a href="#" class="close">&times;</a>
+          </div>
+          <button class="button small" type="button" id="login-submit" href='javascript:login($("#login-form"),"users",function(){
             alert("欢迎登陆！");
         },true);'>登陆</button>
+          <a href="/users/new/" style="font-size: smaller;">没用账户？前去注册</a>
+        </div>
+
       </div>
-    </div>
-  </form>
+      <div class="row">
+        <div class="large-12 columns">
+
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 
 <script>
