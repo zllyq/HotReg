@@ -1,80 +1,496 @@
-<form action="/information/create_hospital">
-  <div class="row">
-    <div class="small-12">
-      <label>
-        名称
-        <input name="name" type="text" placeholder="医院名称" required>
-      </label>
+<!--<form action="/information/create_hospital">-->
+  <!--<div class="row">-->
+    <!--<div class="small-12">-->
+      <!--<label>-->
+        <!--名称-->
+        <!--<input name="name" type="text" placeholder="医院名称" required>-->
+      <!--</label>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="row">-->
+        <!--<div class="small-5 column">-->
+            <!--<label>-->
+                <!--省份-->
+                <!--<input name="provinces_id" type="hidden">-->
+                <!--<select name="provinces_name" id="provinces-select">-->
+                    <!--<option></option>-->
+                <!--</select>-->
+            <!--</label>-->
+        <!--</div>-->
+
+    <!--<div class="small-5 column">-->
+      <!--<label>-->
+        <!--城市-->
+        <!--<input name="cities_id" type="hidden">-->
+        <!--<select name="cities_name" id="provinces-select">-->
+          <!--<option></option>-->
+        <!--</select>-->
+      <!--</label>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="row">-->
+    <!--<div class="small-5 column">-->
+      <!--<label>-->
+        <!--分级-->
+        <!--<input name="grades_id" type="hidden">-->
+        <!--<input name="grades_name" type="text" placeholder="选择医院分级">-->
+      <!--</label>-->
+    <!--</div>-->
+    <!--<div class="small-5 column">-->
+      <!--<label>-->
+        <!--专业-->
+        <!--<input name="majors_id" type="hidden">-->
+        <!--<input name="majors_name" type="text" placeholder="选择医院专业">-->
+      <!--</label>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="row">-->
+    <!--<div class="small-5 column">-->
+      <!--<label>-->
+        <!--地址-->
+        <!--<input name="address" type="text" placeholder="输入地址">-->
+      <!--</label>-->
+    <!--</div>-->
+
+    <!--<div class="small-5 column">-->
+      <!--<label>-->
+        <!--电话-->
+        <!--<input name="phone" type="text" placeholder="输入联系电话">-->
+      <!--</label>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="row">-->
+    <!--<div class="small-12">-->
+      <!--<label>-->
+        <!--简介-->
+        <!--<input name="introduction" type="text" placeholder="输入医院简介">-->
+      <!--</label>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<button type="button" id="hospital-submit" class="button small success">提交</button>-->
+  <!--<button type="submit" class="button small success">提交</button>-->
+<!--</form>-->
+<html><head>
+  <meta charset="utf-8">
+  <title>挂号平台管理系统</title>
+  <link rel="stylesheet" href="foundation/css/foundation.min.css">
+  <link rel="stylesheet" type="text/css" href="css/addhospital.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/dropzone.js"></script>
+  <script src="foundation/js/foundation.min.js" type="text/javascript" charset="utf-8"></script><style type="text/css"></style>
+  <style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+  .en-markup-crop-options {
+      top: 18px !important;
+      left: 50% !important;
+      margin-left: -100px !important;
+      width: 200px !important;
+      border: 2px rgba(255,255,255,.38) solid !important;
+      border-radius: 4px !important;
+  }
+
+  .en-markup-crop-options div div:first-of-type {
+      margin-left: 0px !important;
+  }
+  </style></head>
+<body>
+<nav class="top-bar" data-topbar="" role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#">挂号平台管理系统</a></h1>
+    </li>
+    <li class="toggle-topbar menu-icon">
+      <a href=""><span>菜单</span></a>
+    </li>
+  </ul>
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right show-for-large-up">
+      <li class="active">
+        <a href="#">添加医院</a>
+      </li>
+      <li class="">
+        <a href="#">添加科室</a>
+      </li>
+      <li class="">
+        <a href="#">添加医生</a>
+      </li>
+      <li class="has-dropdown not-click">
+        <a href="#">菜单</a>
+        <ul class="dropdown">
+          <li class="title back js-generated">
+            <h5><a href="javascript:void(0)">Back</a></h5>
+          </li>
+          <li class="parent-link show-for-small">
+            <a class="parent-link js-generated" href="#">Right Button Dropdown</a>
+          </li>
+          <li><a href="#">管理信息</a></li>
+          <li class="active"><a href="#">添加信息</a></li>
+          <li><a href="#">登出</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="right hide-for-large-up">
+      <li class="active"><a href="#">添加信息</a></li>
+      <li class="has-dropdown not-click">
+        <a href="#">菜单</a>
+        <ul class="dropdown">
+          <li class="title back js-generated">
+            <h5><a href="javascript:void(0)">Back</a></h5>
+          </li>
+          <li class="parent-link show-for-small">
+            <a class="parent-link js-generated" href="#">Right Dropdown</a>
+          </li>
+          <li>
+            <a href="#">管理信息</a>
+          </li>
+          <li class="active">
+            <a href="#">添加信息</a>
+          </li>
+          <li>
+            <a href="#">登出</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <!-- Left Nav Section -->
+    <ul class="left show-for-large-up">
+      <li>
+        <a href="#">管理信息</a>
+      </li>
+    </ul>
+  </section>
+</nav>
+<div id="container">
+<!--顶端提示-->
+<div class="row">
+  <div class=" medium-10 medium-centered large-10 large-centered columns" id="show-editing">
+    <div class="row">
+      <div class="medium-10 medium-centered large-10 large-centered columns">
+        <a href="#" class="button">医院名称</a>
+        <a href="#" class="button">科室名称</a>
+        <a href="#" class="button">医生名称</a>
+      </div>
     </div>
   </div>
+</div>
+<!--医院信息-->
+<div class="row">
+  <div class=" medium-10 medium-centered large-10 large-centered columns" id="hospital-window">
+    <!--<div class="row">-->
+    <!--<div class="medium-10 medium-offset-2 large-10 large-offset-1 columns " style="font-size: 30px;">-->
+    <!--<span>医院信息管理</span> <span id="hospital-name-zip">医院名称</span>-->
+    <!--</div>-->
+    <!--</div>-->
 
-  <div class="row">
-        <div class="small-5 column">
-            <label>
-                省份
-                <input name="provinces_id" type="hidden">
-                <select name="provinces_name" id="provinces-select">
-                    <option></option>
-                </select>
-            </label>
+    <form id="hospital-form ">
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>医院名称
+            <input type="text" placeholder="请输入医院名称">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-3 large-offset-1 medium-3 medium-offset-1 columns">
+          <label>地区：省
+            <select name="province" id="select-province">
+              <option value="null">请选择省/直辖市</option>
+              <option value="001">北京</option>
+            </select>
+          </label>
+        </div>
+        <div class="large-3 medium-3 columns">
+          <label>地区：市
+            <select name="province" id="select-city">
+              <option value="null">请选择市</option>
+              <option value="001">北京</option>
+            </select>
+          </label>
+        </div>
+        <div class="large-4 medium-4 medium-pull-1 large-pull-1 columns">
+          <label>地区：区/县
+            <select name="province" id="select-district">
+              <option value="null">请选择区/县</option>
+              <option value="001">海淀区</option>
+            </select>
+          </label>
         </div>
 
-    <div class="small-5 column">
-      <label>
-        城市
-        <input name="cities_id" type="hidden">
-        <select name="cities_name" id="provinces-select">
-          <option></option>
-        </select>
-      </label>
-    </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>选择医院等级
+            <select>
+              <option value="husker">请选择医院等级</option>
+              <option value="husker">三级特(甲)</option>
+              <option value="starbuck">三级甲等</option>
+              <option value="hotdog">三级乙等</option>
+              <option value="apollo">三级丙等</option>
+              <option value="starbuck">二级甲等</option>
+              <option value="hotdog">二级乙等</option>
+              <option value="apollo">二级丙等</option>
+              <option value="starbuck">一级甲等</option>
+              <option value="hotdog">一级乙等</option>
+              <option value="apollo">一级丙等</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>医院地址
+            <input type="text" placeholder="请输入医院地址">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>联系电话
+            <input type="text" placeholder="请输入医院的联系电话">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>医院简介
+            <textarea type="text" placeholder="请输入医院简介"></textarea>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>
+            医院照片
+            <div class="dropzone">
+              点此上传照片
+            </div>
+
+            <script>
+                $(".dropzone").dropzone({
+                    url: "handle-upload.php",
+                    addRemoveLinks: true,
+                    dictRemoveLinks: "x",
+                    dictCancelUpload: "x",
+                    maxFiles: 10,
+                    maxFilesize: 5,
+                    init: function() {
+                        this.on("success", function(file) {
+                            console.log("File " + file.name + "uploaded");
+                        });
+                        this.on("removedfile", function(file) {
+                            console.log("File " + file.name + "removed");
+                        });
+                    }
+                });
+            </script>
+          </label>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>管理科室
+            <div id="manage-department">
+              <div class="departments selected">科室1 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div class="departments">科室2 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div class="departments">科室3 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div class="departments">科室4 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div class="departments">科室5 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div class="departments">科室6 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div id="add-department">添加科室</div>
+
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns" style="text-align: center;">
+          <a href="#" class="button [tiny small large]">保存并关闭</a>
+          <a href="#" class="button [tiny small large]">取消此编辑</a>
+        </div>
+      </div>
+    </form>
+
+
+
+
   </div>
+</div>
+<!--科室信息-->
+<div class="row">
+  <div class=" medium-10 medium-centered large-10 large-centered columns" id="department-window">
+    <!--<div class="row">-->
+    <!--<div class="medium-10 medium-offset-2 large-10 large-offset-1 columns " style="font-size: 30px;">-->
+    <!--<span>科室信息管理</span> <span id="department-name-zip">科室名称</span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <form id="department-form">
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>科室名称
+            <input type="text" placeholder="请输入科室名称">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>科室简介
+            <textarea type="text" placeholder="请输入医院简介"></textarea>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-5 medium-offset-1 large-5 large-offset-1 columns">
+          <label>科室等级
+            <select name="department-level" id="select-department-level">
+              <option value="2">请选择科室等级</option>
+              <option value="1">1级科室</option>
+              <option value="2">2级科室</option>
+            </select>
+          </label>
+        </div>
 
-  <div class="row">
-    <div class="small-5 column">
-      <label>
-        分级
-        <input name="grades_id" type="hidden">
-        <input name="grades_name" type="text" placeholder="选择医院分级">
-      </label>
-    </div>
-    <div class="small-5 column">
-      <label>
-        专业
-        <input name="majors_id" type="hidden">
-        <input name="majors_name" type="text" placeholder="选择医院专业">
-      </label>
-    </div>
+        <div class="medium-5 medium-pull-1 large-5 large-pull-1  columns">
+          <label>父级科室
+            <select name="parent-department" id="select-parent-department">
+              <option value="null">请选择父级科室</option>
+              <option value="1">1级科室</option>
+              <option value="2">1级科室</option>
+              <option value="1">1级科室</option>
+              <option value="2">1级科室</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>管理医生
+            <div id="manage-doctor">
+              <div class="doctors selected">医生1 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+              <div class="doctors">医生2 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+              <div class="doctors">医生3 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+              <div class="doctors">医生4 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+              <div class="doctors">医生5 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+              <div class="doctors">医生6 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+              <div class="doctors">名字很长君 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+              <div id="add-doctor">添加科室</div>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns" style="text-align: center;">
+          <a href="#" class="button [tiny small large]">保存并关闭</a>
+          <a href="#" class="button [tiny small large]">取消此编辑</a>
+        </div>
+      </div>
+    </form>
+
+
+
+
   </div>
+</div>
+<!--医生信息-->
+<div class="row">
+  <div class=" medium-10 medium-centered large-10 large-centered columns" id="doctor-window">
+    <!--<div class="row">-->
+    <!--<div class="medium-10 medium-offset-2 large-10 large-offset-1 columns " style="font-size: 30px;">-->
+    <!--<span>医生信息管理</span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <form id="doctor-form">
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>医生姓名
+            <input type="text" placeholder="请输入医生姓名">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-5 medium-offset-1 large-5 large-offset-1 columns">
+          <label>医生等级
+            <select name="department-level" id="select-doctor-level">
+              <option value="2">请选择医生等级</option>
+              <option value="1">1级</option>
+              <option value="2">2级</option>
+            </select>
+          </label>
+        </div>
 
-  <div class="row">
-    <div class="small-5 column">
-      <label>
-        地址
-        <input name="address" type="text" placeholder="输入地址">
-      </label>
-    </div>
+        <div class="medium-5 medium-pull-1 large-5 large-pull-1  columns">
+          <label>所在科室
+            <select name="parent-department" id="select-parent-department">
+              <option value="null">请选择所在科室</option>
+              <option value="1">科室</option>
+              <option value="2">科室</option>
+              <option value="1">科室</option>
+              <option value="2">科室</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>医生简介
+            <textarea type="text" placeholder="请输入医生简介"></textarea>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>
+            医生照片
+            <div id="doctor-pic" class="dropzone">
+              点此上传照片
+            </div>
 
-    <div class="small-5 column">
-      <label>
-        电话
-        <input name="phone" type="text" placeholder="输入联系电话">
-      </label>
-    </div>
+            <script>
+                $("#doctor-pic").dropzone({
+                    url: "handle-upload.php",
+                    addRemoveLinks: true,
+                    dictRemoveLinks: "x",
+                    dictCancelUpload: "x",
+                    maxFiles: 10,
+                    maxFilesize: 5,
+                    init: function() {
+                        this.on("success", function(file) {
+                            console.log("File " + file.name + "uploaded");
+                        });
+                        this.on("removedfile", function(file) {
+                            console.log("File " + file.name + "removed");
+                        });
+                    }
+                });
+            </script>
+          </label>
+
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns" style="text-align: center;">
+          <a href="#" class="button [tiny small large]">保存并关闭</a>
+          <a href="#" class="button [tiny small large]">取消此编辑</a>
+        </div>
+      </div>
+    </form>
+
+
+
+
   </div>
+</div>
 
-  <div class="row">
-    <div class="small-12">
-      <label>
-        简介
-        <input name="introduction" type="text" placeholder="输入医院简介">
-      </label>
-    </div>
-  </div>
+</div>
 
-  <button type="button" id="hospital-submit" class="button small success">提交</button>
-  <button type="submit" class="button small success">提交</button>
-</form>
+</body></html>
 <script type="text/coffeescript">
     fill_up_select = (data,select) ->
         select.append($("<option value='#{line.name}' data-id=#{line.id}>#{line.name}</option>")) for line in data

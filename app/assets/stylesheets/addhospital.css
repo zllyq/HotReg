@@ -1,0 +1,270 @@
+.top-bar{
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+#container{
+	position: relative;
+	padding-top: 65px;
+    padding-bottom: 100px;
+}
+#hospital-window,#department-window,#doctor-window,#show-editing{
+	padding-top: 15px;
+    margin-bottom: 15px;
+	box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.3);
+}
+#show-editing .button{
+    margin-right: 15px;
+    padding: 0.7em 1.5em;
+}
+.departments,.doctors{
+    padding:10px;
+    text-align: left;
+    background-color: #fff;
+    display: inline-block;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.3);
+    margin: 7px 1%;
+    line-height: 30px;
+}
+.departments,#add-department{
+    width: 47.3%;
+}
+.doctors,#add-doctor{
+    width: 30.3%;
+}
+.edit-department,.rm-department,.edit-doctor,.rm-doctor{
+    color: #fff;
+    float: right;
+    display: block;
+    height: 30px;
+    padding:  10px;
+    line-height: 10px;
+}
+.edit-department,.edit-doctor{
+    background-color: #00b810;
+}
+.edit-department:hover,.edit-doctor:hover{
+    background-color: #3ec537;
+}
+.rm-department,.rm-doctor{
+    background-color: #c00000;
+}
+.rm-department:hover,.rm-doctor:hover{
+    background-color: #df0000;
+}
+.departments:hover,.doctors:hover{
+    background-color: #f6f6f6;
+}
+.selected{
+    background-color: #fffbd8 !important;
+}
+
+#manage-department,#manage-doctor{
+    padding-top:7px;
+    padding-bottom: 7px;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-bottom: 15px;
+    cursor: default;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+#add-doctor,#add-department{
+    text-align: center;
+    padding:10px;
+    background-color: #fff;
+    display: inline-block;
+    height: 50px;
+    color: #008CBA;
+    cursor: pointer;
+    box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.3);
+    margin: 7px 1%;
+    line-height: 30px;
+}
+#add-doctor:hover,#add-department:hover{
+    background-color: #f6f6f6;
+    color: #00b9ef;
+    box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.5);
+}
+
+#close-department-edit,#close-doctor-edit{
+    font-weight: bold;
+    color: #0095c4;
+    cursor: pointer;
+}
+#close-department-edit:hover{
+    color: #00acdf;
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+/* The MIT License */
+.dropzone,
+.dropzone *,
+.dropzone-previews,
+.dropzone-previews * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.dropzone {
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.08);
+    background: rgba(0,0,0,0.02);
+    padding: 1em;
+}
+.dropzone.dz-clickable {
+    cursor: pointer;
+}
+.dropzone.dz-clickable .dz-message,
+.dropzone.dz-clickable .dz-message span {
+    cursor: pointer;
+}
+.dropzone.dz-clickable * {
+    cursor: default;
+}
+.dropzone .dz-message {
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+}
+.dropzone.dz-drag-hover {
+    border-color: rgba(0,0,0,0.15);
+    background: rgba(0,0,0,0.04);
+}
+.dropzone.dz-started .dz-message {
+    display: none;
+}
+.dropzone .dz-preview,
+.dropzone-previews .dz-preview {
+    background: rgba(255,255,255,0.8);
+    position: relative;
+    display: inline-block;
+    margin: 17px;
+    vertical-align: top;
+    border: 1px solid #acacac;
+    padding: 6px 6px 6px 6px;
+}
+.dropzone .dz-preview.dz-file-preview [data-dz-thumbnail],
+.dropzone-previews .dz-preview.dz-file-preview [data-dz-thumbnail] {
+    display: none;
+}
+.dropzone .dz-preview .dz-details,
+.dropzone-previews .dz-preview .dz-details {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    background: #ebebeb;
+    padding: 5px;
+    margin-bottom: 22px;
+}
+.dropzone .dz-preview .dz-details .dz-filename,
+.dropzone-previews .dz-preview .dz-details .dz-filename {
+    overflow: hidden;
+    height: 100%;
+}
+.dropzone .dz-preview .dz-details img,
+.dropzone-previews .dz-preview .dz-details img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+}
+.dropzone .dz-preview .dz-details .dz-size,
+.dropzone-previews .dz-preview .dz-details .dz-size {
+    position: absolute;
+    bottom: -28px;
+    left: 3px;
+    height: 28px;
+    line-height: 28px;
+}
+.dropzone .dz-preview.dz-error .dz-error-mark,
+.dropzone-previews .dz-preview.dz-error .dz-error-mark {
+    display: block;
+}
+.dropzone .dz-preview.dz-success .dz-success-mark,
+.dropzone-previews .dz-preview.dz-success .dz-success-mark {
+    display: block;
+}
+.dropzone .dz-preview:hover .dz-details img,
+.dropzone-previews .dz-preview:hover .dz-details img {
+    display: none;
+}
+.dropzone .dz-preview .dz-success-mark,
+.dropzone-previews .dz-preview .dz-success-mark,
+.dropzone .dz-preview .dz-error-mark,
+.dropzone-previews .dz-preview .dz-error-mark {
+    display: none;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+    text-align: center;
+    right: -10px;
+    top: -10px;
+}
+.dropzone .dz-preview .dz-success-mark,
+.dropzone-previews .dz-preview .dz-success-mark {
+    color: #8cc657;
+}
+.dropzone .dz-preview .dz-error-mark,
+.dropzone-previews .dz-preview .dz-error-mark {
+    color: #ee162d;
+}
+.dropzone .dz-preview .dz-progress,
+.dropzone-previews .dz-preview .dz-progress {
+    position: absolute;
+    top: 100px;
+    left: 6px;
+    right: 6px;
+    height: 6px;
+    background: #d7d7d7;
+    display: none;
+}
+.dropzone .dz-preview .dz-progress .dz-upload,
+.dropzone-previews .dz-preview .dz-progress .dz-upload {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    background-color: #8cc657;
+}
+.dropzone .dz-preview.dz-processing .dz-progress,
+.dropzone-previews .dz-preview.dz-processing .dz-progress {
+    display: block;
+}
+.dropzone .dz-preview .dz-error-message,
+.dropzone-previews .dz-preview .dz-error-message {
+    display: none;
+    position: absolute;
+    top: -5px;
+    left: -20px;
+    background: rgba(245,245,245,0.8);
+    padding: 8px 10px;
+    color: #800;
+    min-width: 140px;
+    max-width: 500px;
+    z-index: 500;
+}
+.dropzone .dz-preview:hover.dz-error .dz-error-message,
+.dropzone-previews .dz-preview:hover.dz-error .dz-error-message {
+    display: block;
+}
+.dropzone {
+    background-color: #fff;
+    margin-bottom: 15px;
+    border-color: #ccc;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
