@@ -1,88 +1,3 @@
-<!--<form action="/information/create_hospital">-->
-  <!--<div class="row">-->
-    <!--<div class="small-12">-->
-      <!--<label>-->
-        <!--名称-->
-        <!--<input name="name" type="text" placeholder="医院名称" required>-->
-      <!--</label>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <!--<div class="row">-->
-        <!--<div class="small-5 column">-->
-            <!--<label>-->
-                <!--省份-->
-                <!--<input name="provinces_id" type="hidden">-->
-                <!--<select name="provinces_name" id="provinces-select">-->
-                    <!--<option></option>-->
-                <!--</select>-->
-            <!--</label>-->
-        <!--</div>-->
-
-    <!--<div class="small-5 column">-->
-      <!--<label>-->
-        <!--城市-->
-        <!--<input name="cities_id" type="hidden">-->
-        <!--<select name="cities_name" id="provinces-select">-->
-          <!--<option></option>-->
-        <!--</select>-->
-      <!--</label>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <!--<div class="row">-->
-    <!--<div class="small-5 column">-->
-      <!--<label>-->
-        <!--分级-->
-        <!--<input name="grades_id" type="hidden">-->
-        <!--<input name="grades_name" type="text" placeholder="选择医院分级">-->
-      <!--</label>-->
-    <!--</div>-->
-    <!--<div class="small-5 column">-->
-      <!--<label>-->
-        <!--专业-->
-        <!--<input name="majors_id" type="hidden">-->
-        <!--<input name="majors_name" type="text" placeholder="选择医院专业">-->
-      <!--</label>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <!--<div class="row">-->
-    <!--<div class="small-5 column">-->
-      <!--<label>-->
-        <!--地址-->
-        <!--<input name="address" type="text" placeholder="输入地址">-->
-      <!--</label>-->
-    <!--</div>-->
-
-    <!--<div class="small-5 column">-->
-      <!--<label>-->
-        <!--电话-->
-        <!--<input name="phone" type="text" placeholder="输入联系电话">-->
-      <!--</label>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <!--<div class="row">-->
-    <!--<div class="small-12">-->
-      <!--<label>-->
-        <!--简介-->
-        <!--<input name="introduction" type="text" placeholder="输入医院简介">-->
-      <!--</label>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <!--<button type="button" id="hospital-submit" class="button small success">提交</button>-->
-  <!--<button type="submit" class="button small success">提交</button>-->
-<!--</form>-->
-<html><head>
-  <meta charset="utf-8">
-  <title>挂号平台管理系统</title>
-  <link rel="stylesheet" href="foundation/css/foundation.min.css">
-  <link rel="stylesheet" type="text/css" href="css/addhospital.css">
-  <script src="js/jquery.min.js"></script>
-  <script src="js/dropzone.js"></script>
-  <script src="foundation/js/foundation.min.js" type="text/javascript" charset="utf-8"></script><style type="text/css"></style>
   <style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
   .en-markup-crop-options {
       top: 18px !important;
@@ -96,8 +11,8 @@
   .en-markup-crop-options div div:first-of-type {
       margin-left: 0px !important;
   }
-  </style></head>
-<body>
+  </style>
+
 <nav class="top-bar" data-topbar="" role="navigation">
   <ul class="title-area">
     <li class="name">
@@ -166,6 +81,11 @@
   </section>
 </nav>
 <div id="container">
+<div class="alert-box success radius" id="success-alerter" style="display: none">
+  提交成功
+  <a href="#" class="close">&times;</a>
+</div>
+
 <!--顶端提示-->
 <div class="row">
   <div class=" medium-10 medium-centered large-10 large-centered columns" id="show-editing">
@@ -187,36 +107,33 @@
     <!--</div>-->
     <!--</div>-->
 
-    <form id="hospital-form ">
+    <form id="form-hospital" action="/information/create_hospital">
       <div class="row">
         <div class="medium-10 medium-centered large-10 large-centered columns">
           <label>医院名称
-            <input type="text" placeholder="请输入医院名称">
+            <input type="text" name="name" placeholder="请输入医院名称">
           </label>
         </div>
       </div>
       <div class="row">
         <div class="large-3 large-offset-1 medium-3 medium-offset-1 columns">
           <label>地区：省
-            <select name="province" id="select-province">
+            <select name="provinces" id="select-province">
               <option value="null">请选择省/直辖市</option>
-              <option value="001">北京</option>
             </select>
           </label>
         </div>
         <div class="large-3 medium-3 columns">
           <label>地区：市
-            <select name="province" id="select-city">
+            <select name="cities" id="select-city">
               <option value="null">请选择市</option>
-              <option value="001">北京</option>
             </select>
           </label>
         </div>
         <div class="large-4 medium-4 medium-pull-1 large-pull-1 columns">
-          <label>地区：区/县
-            <select name="province" id="select-district">
-              <option value="null">请选择区/县</option>
-              <option value="001">海淀区</option>
+          <label>专业
+            <select name="majors" id="select-major">
+              <option value="null">请选择专业</option>
             </select>
           </label>
         </div>
@@ -225,18 +142,8 @@
       <div class="row">
         <div class="medium-10 medium-centered large-10 large-centered columns">
           <label>选择医院等级
-            <select>
-              <option value="husker">请选择医院等级</option>
-              <option value="husker">三级特(甲)</option>
-              <option value="starbuck">三级甲等</option>
-              <option value="hotdog">三级乙等</option>
-              <option value="apollo">三级丙等</option>
-              <option value="starbuck">二级甲等</option>
-              <option value="hotdog">二级乙等</option>
-              <option value="apollo">二级丙等</option>
-              <option value="starbuck">一级甲等</option>
-              <option value="hotdog">一级乙等</option>
-              <option value="apollo">一级丙等</option>
+            <select name="grades" id="select-grade">
+              <option value="null">请选择等级</option>
             </select>
           </label>
         </div>
@@ -244,54 +151,25 @@
       <div class="row">
         <div class="medium-10 medium-centered large-10 large-centered columns">
           <label>医院地址
-            <input type="text" placeholder="请输入医院地址">
+            <input type="text" name="address" placeholder="请输入医院地址">
           </label>
         </div>
       </div>
       <div class="row">
         <div class="medium-10 medium-centered large-10 large-centered columns">
           <label>联系电话
-            <input type="text" placeholder="请输入医院的联系电话">
+            <input type="text" name="phone" placeholder="请输入医院的联系电话">
           </label>
         </div>
       </div>
       <div class="row">
         <div class="medium-10 medium-centered large-10 large-centered columns">
           <label>医院简介
-            <textarea type="text" placeholder="请输入医院简介"></textarea>
+            <textarea type="text" name="introduction" placeholder="请输入医院简介"></textarea>
           </label>
         </div>
       </div>
-      <div class="row">
-        <div class="medium-10 medium-centered large-10 large-centered columns">
-          <label>
-            医院照片
-            <div class="dropzone">
-              点此上传照片
-            </div>
 
-            <script>
-                $(".dropzone").dropzone({
-                    url: "handle-upload.php",
-                    addRemoveLinks: true,
-                    dictRemoveLinks: "x",
-                    dictCancelUpload: "x",
-                    maxFiles: 10,
-                    maxFilesize: 5,
-                    init: function() {
-                        this.on("success", function(file) {
-                            console.log("File " + file.name + "uploaded");
-                        });
-                        this.on("removedfile", function(file) {
-                            console.log("File " + file.name + "removed");
-                        });
-                    }
-                });
-            </script>
-          </label>
-
-        </div>
-      </div>
       <div class="row">
         <div class="medium-10 medium-centered large-10 large-centered columns">
           <label>管理科室
@@ -310,8 +188,8 @@
       </div>
       <div class="row">
         <div class="medium-10 medium-centered large-10 large-centered columns" style="text-align: center;">
-          <a href="#" class="button [tiny small large]">保存并关闭</a>
-          <a href="#" class="button [tiny small large]">取消此编辑</a>
+          <button id="submit-hospital" class="button tiny" type="button">保存并关闭</button>
+          <a href="#" class="button tiny">取消此编辑</a>
         </div>
       </div>
     </form>
@@ -391,9 +269,6 @@
       </div>
     </form>
 
-
-
-
   </div>
 </div>
 <!--医生信息-->
@@ -442,36 +317,6 @@
           </label>
         </div>
       </div>
-      <div class="row">
-        <div class="medium-10 medium-centered large-10 large-centered columns">
-          <label>
-            医生照片
-            <div id="doctor-pic" class="dropzone">
-              点此上传照片
-            </div>
-
-            <script>
-                $("#doctor-pic").dropzone({
-                    url: "handle-upload.php",
-                    addRemoveLinks: true,
-                    dictRemoveLinks: "x",
-                    dictCancelUpload: "x",
-                    maxFiles: 10,
-                    maxFilesize: 5,
-                    init: function() {
-                        this.on("success", function(file) {
-                            console.log("File " + file.name + "uploaded");
-                        });
-                        this.on("removedfile", function(file) {
-                            console.log("File " + file.name + "removed");
-                        });
-                    }
-                });
-            </script>
-          </label>
-
-        </div>
-      </div>
 
 
       <div class="row">
@@ -482,30 +327,34 @@
       </div>
     </form>
 
-
-
-
   </div>
 </div>
 
 </div>
 
-</body></html>
 <script type="text/coffeescript">
     fill_up_select = (data,select) ->
+        select.find('option').not(':first').remove()
         select.append($("<option value='#{line.name}' data-id=#{line.id}>#{line.name}</option>")) for line in data
 
-    load_provinces = () ->
-        ajax_post('/information/provinces',{},(data) -> fill_up_select(data.data,$('#provinces-select')))
+    load_init = () ->
+        ajax_post('/information/provinces',{},(data) -> fill_up_select(data.data,$('#select-province')))
+        ajax_post('/information/majors',{},(data) -> fill_up_select(data.data,$('#select-major')))
+        ajax_post('/information/grades',{},(data) -> fill_up_select(data.data,$('#select-grade')))
+        binds()
+
+
+    binds = () ->
+        $('#submit-hospital').click(() -> submit_form($('#form-hospital'),'hospitals'))
 
     $('select').change(
             () ->
-                selected = $(this).find("option")
-                alert(selected.data('id'))
-                $(this).attr('data-id',selected.data('id'))
-
+                thi = $(this)
+                selected = thi.find("option")
+                selected.each () -> thi.data('id',$(this).data('id')) if $(this)[0].selected
+                ajax_post('/information/cities',{provinces_id:thi.data('id')},(data) -> fill_up_select(data.data,$('#select-city'))) if thi.attr('id') == 'select-province'
     )
 
-    $(window).ready(load_provinces)
+    $(window).ready(load_init)
 
 </script>

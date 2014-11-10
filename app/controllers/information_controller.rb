@@ -9,8 +9,8 @@ class InformationController < ApplicationController
   end
 
   def provinces
-    unless login?
-      render json: {:status => 0,:error => '用户未登录'}
+    unless token?
+      render json: {:status => 0,:error => 'token验证失败'}
       return false
     end
 
@@ -24,13 +24,63 @@ class InformationController < ApplicationController
     false
   end
 
+  def majors
+    unless token?
+      render json: {:status => 0,:error => 'token验证失败'}
+      return false
+    end
+
+    majors = Major.select('id','name')
+    if majors
+      render json: {:status => 1,:data => majors}
+      return true
+    end
+
+    render json: {:status => 0,:error => '还没有专业呢'}
+    false
+  end
+
+  def cities
+    unless token?
+      render json: {:status => 0,:error => 'token验证失败'}
+      return false
+    end
+
+    #cities = City.find_by :provinces_id,params[:provinces_id]
+    cities = City.where("provinces_id=?", params[:provinces_id])
+    if cities
+      render json: {:status => 1,:data => cities}
+      return true
+    end
+
+    render json: {:status => 0,:error => '还没有城市呢'}
+    false
+  end
+
+  def grades
+    unless token?
+      render json: {:status => 0,:error => 'token验证失败'}
+      return false
+    end
+
+    grades = Grade.select('id','name')
+    if grades
+      render json: {:status => 1,:data => grades}
+      return true
+    end
+
+    render json: {:status => 0,:error => '还没有等级呢'}
+    false
+  end
+
+
   def create_hospital
 
     unless admin?
       render json: {:status => 0,:error => '该用户没有创建权限'}
     end
 
-    param = params[:hospital]
+    param = params[:hospitals]
     hospital = Hospital.new do |h|
       h.name = param[:name]
       h.provinces_id = param[:provinces_id]

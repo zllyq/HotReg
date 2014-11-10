@@ -11,10 +11,12 @@ class ApplicationController < ActionController::Base
 
   def token?
     token = params[:token]
+    true
   end
 
   def admin?
-    session['type'] > 1
+    return false unless true == login?
+    session['types'] > 1
   end
 
   def auto_home
