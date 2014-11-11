@@ -91,15 +91,15 @@
   <div class=" medium-10 medium-centered large-10 large-centered columns" id="show-editing">
     <div class="row">
       <div class="medium-10 medium-centered large-10 large-centered columns">
-        <a href="#" class="button">医院名称</a>
-        <a href="#" class="button">科室名称</a>
-        <a href="#" class="button">医生名称</a>
+        <button onclick="javascript:show_new('hospital')" class="button">添加医院</button>
+        <button onclick="javascript:show_new('department')" class="button">添加科室</button>
+        <button onclick="show_new('doctor')" class="button">添加医生</button>
       </div>
     </div>
   </div>
 </div>
 <!--医院信息-->
-<div class="row">
+<div class="row new" id="new-hospital">
   <div class=" medium-10 medium-centered large-10 large-centered columns" id="hospital-window">
     <!--<div class="row">-->
     <!--<div class="medium-10 medium-offset-2 large-10 large-offset-1 columns " style="font-size: 30px;">-->
@@ -200,48 +200,41 @@
   </div>
 </div>
 <!--科室信息-->
-<div class="row">
+<div class="row new" id="new-department">
   <div class=" medium-10 medium-centered large-10 large-centered columns" id="department-window">
     <!--<div class="row">-->
     <!--<div class="medium-10 medium-offset-2 large-10 large-offset-1 columns " style="font-size: 30px;">-->
     <!--<span>科室信息管理</span> <span id="department-name-zip">科室名称</span>-->
     <!--</div>-->
     <!--</div>-->
-    <form id="department-form">
+    <form id="form-department" action="/information/create_department">
       <div class="row">
         <div class="medium-10 medium-centered large-10 large-centered columns">
           <label>科室名称
-            <input type="text" placeholder="请输入科室名称">
+            <input type="text" name="name" placeholder="请输入科室名称" required>
           </label>
         </div>
       </div>
       <div class="row">
         <div class="medium-10 medium-centered large-10 large-centered columns">
           <label>科室简介
-            <textarea type="text" placeholder="请输入医院简介"></textarea>
+            <textarea name="introduction" placeholder="请输入科室简介"></textarea>
           </label>
         </div>
       </div>
       <div class="row">
         <div class="medium-5 medium-offset-1 large-5 large-offset-1 columns">
-          <label>科室等级
-            <select name="department-level" id="select-department-level">
-              <option value="2">请选择科室等级</option>
-              <option value="1">1级科室</option>
-              <option value="2">2级科室</option>
+          <label>所属医院
+            <select name="department-level" id="select-hospital">
+              <option value="null">请选择医院</option>
+
             </select>
           </label>
         </div>
 
         <div class="medium-5 medium-pull-1 large-5 large-pull-1  columns">
-          <label>父级科室
-            <select name="parent-department" id="select-parent-department">
-              <option value="null">请选择父级科室</option>
-              <option value="1">1级科室</option>
-              <option value="2">1级科室</option>
-              <option value="1">1级科室</option>
-              <option value="2">1级科室</option>
-            </select>
+          <label>编号
+            <input name="ids" type="text" placeholder="请输入科室编号" required>
           </label>
         </div>
       </div>
@@ -263,8 +256,8 @@
       </div>
       <div class="row">
         <div class="medium-10 medium-centered large-10 large-centered columns" style="text-align: center;">
-          <a href="#" class="button [tiny small large]">保存并关闭</a>
-          <a href="#" class="button [tiny small large]">取消此编辑</a>
+          <button class="button small" type="button" id="submit-department">保存并关闭</button>
+          <button class="button small">取消此编辑</button>
         </div>
       </div>
     </form>
@@ -272,14 +265,41 @@
   </div>
 </div>
 <!--医生信息-->
-<div class="row">
+<div class="row new" id="new-doctor">
   <div class=" medium-10 medium-centered large-10 large-centered columns" id="doctor-window">
     <!--<div class="row">-->
     <!--<div class="medium-10 medium-offset-2 large-10 large-offset-1 columns " style="font-size: 30px;">-->
     <!--<span>医生信息管理</span>-->
     <!--</div>-->
     <!--</div>-->
-    <form id="doctor-form">
+    <form id="form-doctor">
+      <div class="row">
+        <div class="medium-5 medium-offset-1 large-5 large-offset-1 columns">
+          <label>所在医院
+            <select name="hospitals" id="select-hospital" required="">
+              <option>请选择医院</option>
+
+            </select>
+          </label>
+        </div>
+
+        <div class="medium-5 medium-pull-1 large-5 large-pull-1  columns">
+          <label>所在科室
+            <select name="departments" id="select-department">
+              <option value="null">请选择所在科室</option>
+
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>医生姓名
+            <input type="text" name="name" placeholder="请输入医生姓名">
+          </label>
+        </div>
+      </div>
       <div class="row">
         <div class="medium-10 medium-centered large-10 large-centered columns">
           <label>医生姓名
@@ -288,32 +308,9 @@
         </div>
       </div>
       <div class="row">
-        <div class="medium-5 medium-offset-1 large-5 large-offset-1 columns">
-          <label>医生等级
-            <select name="department-level" id="select-doctor-level">
-              <option value="2">请选择医生等级</option>
-              <option value="1">1级</option>
-              <option value="2">2级</option>
-            </select>
-          </label>
-        </div>
-
-        <div class="medium-5 medium-pull-1 large-5 large-pull-1  columns">
-          <label>所在科室
-            <select name="parent-department" id="select-parent-department">
-              <option value="null">请选择所在科室</option>
-              <option value="1">科室</option>
-              <option value="2">科室</option>
-              <option value="1">科室</option>
-              <option value="2">科室</option>
-            </select>
-          </label>
-        </div>
-      </div>
-      <div class="row">
         <div class="medium-10 medium-centered large-10 large-centered columns">
           <label>医生简介
-            <textarea type="text" placeholder="请输入医生简介"></textarea>
+            <textarea name="introduction" placeholder="请输入医生简介"></textarea>
           </label>
         </div>
       </div>
@@ -333,6 +330,11 @@
 </div>
 
 <script type="text/coffeescript">
+    console.log(1)
+    @show_new = (name) ->
+        $('.new').hide()
+        $('#new-' + name).show()
+
     fill_up_select = (data,select) ->
         select.find('option').not(':first').remove()
         select.append($("<option value='#{line.name}' data-id=#{line.id}>#{line.name}</option>")) for line in data
@@ -341,11 +343,39 @@
         ajax_post('/information/provinces',{},(data) -> fill_up_select(data.data,$('#select-province')))
         ajax_post('/information/majors',{},(data) -> fill_up_select(data.data,$('#select-major')))
         ajax_post('/information/grades',{},(data) -> fill_up_select(data.data,$('#select-grade')))
+        ajax_post('/information/hospitals',{},(data) -> fill_up_select(data.data,$('#select-hospital')))
         binds()
 
 
     binds = () ->
-        $('#submit-hospital').click(() -> submit_form($('#form-hospital'),'hospitals'))
+        $('#submit-hospital').click(
+            () ->
+                thi = $(this)
+                thi.html('加载中')
+                thi.addClass('disabled')
+                submit_form($('#form-hospital'),'hospitals',
+                    (data) ->
+                        submit_success(data)
+                        thi.html('保存并关闭')
+                        thi.removeClass('disabled')
+                        show_new('department')
+
+                )
+
+        )
+        $('#submit-department').click(
+                () ->
+                    thi = $(this)
+                    thi.html '加载中'
+                    thi.addClass 'disabled'
+                    submit_form($('#form-department'),'departments',
+                        (data) ->
+                            submit_success(data)
+                            thi.html('保存并关闭')
+                            thi.removeClass('disabled')
+                            show_new('doctor')
+                    )
+        )
 
     $('select').change(
             () ->

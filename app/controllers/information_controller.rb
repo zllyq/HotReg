@@ -73,11 +73,26 @@ class InformationController < ApplicationController
     false
   end
 
+  def hospitals
+    unless token?
+      render json: {:status => 0,:error => 'token验证失败'}
+      return false
+    end
+
+    hospitals = Hospital.take(10)
+    if hospitals
+      render json: {:status => 1,:data => hospitals}
+      return true
+    end
+    render json: {:status => 0,:error => '还没有医院呢'}
+    false
+  end
 
   def create_hospital
 
     unless admin?
       render json: {:status => 0,:error => '该用户没有创建权限'}
+      return false
     end
 
     param = params[:hospitals]
@@ -101,6 +116,33 @@ class InformationController < ApplicationController
     else
       render :json => {status:0,error => '保存失败'}
     end
+
+  end
+
+  def create_department
+    unless admin?
+      render json: {:status => 0,:error => '该用户没有创建权限'}
+      return false
+    end
+
+    department = Department.create
+    department.init(params[:departments])
+
+    if department.save
+      render :json => {:status => 1}
+      return true
+    end
+    render :json => {:status => 0, :error => '保存失败'}
+    false
+  end
+
+  def create_doctor
+    unless admin?
+      render json: {:status => 0,:error => '该用户没有创建权限'}
+      return false
+    end
+
+
 
   end
 

@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   post 'information/majors' => 'information#majors'
   post 'information/cities' => 'information#cities'
   post 'information/grades' => 'information#grades'
+  post 'information/hospitals' => 'information#hospitals'
+
   post 'information/create_hospital' => 'information#create_hospital'
+  post 'information/create_department' => 'information#create_department'
   resource :information
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

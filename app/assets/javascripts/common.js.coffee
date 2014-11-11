@@ -1,12 +1,7 @@
 
   ###ajax请求###
-  @ajax_post = (url = '#', data = null, success = null, error = null, debug = true) ->
-    successor = success
-    success_function = (data) ->
-      if debug
-        console.log(data)
-
-      submit_success(data)
+  @ajax_post = (url = '#', data = null, success = submit_success, error = null, debug = true) ->
+    success_function = success
 
     $.ajax(
       {
@@ -22,7 +17,7 @@
 
   ###获取表单数据###
   @get_form_data = (form,name) ->
-    inputs = form.find('input,area')
+    inputs = form.find('input,textarea')
     result = {}
 
     for i in inputs
@@ -39,7 +34,7 @@
 
   ###提交表单数据###
   @submit_form = (form,names, success = null, error = null,url = form.attr 'action') ->
-    ajax_post url, get_form_data(form,names), success:submit_success ? (null == success), error
+    ajax_post url, get_form_data(form,names), success, error
 
   ###提交成功###
   @submit_success = (data) ->
@@ -49,6 +44,9 @@
       $('#error-alerter').show()
     else
       $('#success-alerter').show()
+      setTimeout(() ->
+                  $('#success-alerter').hide(500)
+      ,3000 )
 
   @test = () ->
     alert('cak')
