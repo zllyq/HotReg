@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <title>挂号平台</title>
+</head>
+<body>
+<div id="top-bar">
+  <a href="#" class="float-left">登录</a>
+  <a href="#" class="float-left">注册</a>
+  <a class="float-right" id="user-menu">用户选项 <span class="fa fa-sort-down"></span></a>
+  <a href="#" class="float-right">客服咨询</a>
+  <a href="#" class="float-right">使用帮助</a>
+  <div id="menu-list">
+    <a href="#">我的预约</a>
+    <a href="#">用户中心</a>
+    <a href="#">退出登录</a>
+  </div>
+</div>
+<div id="logo-and-search-div">
+    <div id="logo-div">
+      <img src="/assets/logo.png" alt="logo" id="logo"/>
+    </div>
+    <div id="search-div">
+      <input type="text" placeholder="请输入您要搜索的医院或医生"/>
+      <a class="button">搜索</a>
+    </div>
+</div>
+<div id="sequence-bar">
+
+  <a href="#">按预约人数</a>
+  <a href="#">按时段</a>
+  <a href="#" class="active-seq">默认</a>
+  <span>排序方式：</span>
+
+</div>
+
+<div id="mid-container">
+  <div id="left-query-div">
+    <form action="#">
+      <div id="select-district">
+
+        <div class="row">
+            <label>地区：省
+              <select name="city_id" id="select-province">
+                <option value="null">请选择省/直辖市</option>
+                <option value="001">北京</option>
+              </select>
+            </label>
+          </div>
+          <div class="row">
+            <label>地区：市
+              <select name="province_id" id="select-city">
+                <option value="null">请选择市</option>
+                <option value="001">北京</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      <div id="select-hospital">
+        <label>医院等级
+          <select name="grades" id="select-grade">
+            <option value="null">请选择医院等级</option>
+            <option value="001">...</option>
+          </select>
+        </label>
+        <label>医院类别
+          <select name="major_id" id="select-major">
+            <option value="null">请选择医院类别</option>
+            <option value="001">...</option>
+          </select>
+        </label>
+      </div>
+      <div id="select-department">
+        <label>选择科室
+          <select name="department_id" id="select-department">
+            <option value="null">选择科室</option>
+            <option value="001">...</option>
+          </select>
+        </label>
+      </div>
+      <div id="select-time-period">
+        <label>选择起始时间
+          <select name="department_id" id="select-department">
+            <option value="null">选择起始时间</option>
+            <option value="001">...</option>
+          </select>
+        </label>
+        <label>选择截止时间
+          <select name="department_id" id="select-department">
+            <option value="null">选择结束时间</option>
+            <option value="001">...</option>
+          </select>
+        </label>
+      </div>
+    </form>
+  </div>
+
+  <div id="right-display-div">
+      <div id="selected-bar">
+        已选择:
+        <div class="selected-block">
+            <a href="#" class="selected-unit">北京市</a>
+            <!--<span class="right-arrow"></span>-->
+        </div>
+
+        <div class="selected-block">
+          <!--<span class="left-arrow"></span>-->
+           <a href="#" class="selected-unit"> 北京市 </a>
+            <!--<span class="right-arrow"></span>-->
+        </div>
+        <div class="selected-block">
+          <!--<span class="left-arrow"></span>-->
+          <a href="#" class="selected-unit"> 北医三院 </a>
+          <!--<span class="right-arrow"></span>-->
+        </div>
+        <div class="selected-block">
+          <!--<span class="left-arrow"></span>-->
+          <a href="#" class="selected-unit"> 计划生育科 </a>
+          <!--<span class="right-arrow"></span>-->
+        </div>
+      </div>
+      <div id="info-list">
+        <h6 id="hospital-title">我选择的医院/医院列表</h6>
+        <div class="row list" id="hospital-list">
+          <div class="listrow selected-element">
+                <div class="list-img">
+                  <img src="/assets/logo.png" alt=""/>
+                </div>
+                <div class="list-info">
+                  <div class="list-hospital-info">
+                    <span class="hos-name"><a href="#">北医三院</a></span>
+                    <span class="hos-lv">三级甲等</span>
+                  </div>
+                  <div>
+                    <span class="fa fa-phone"></span>
+                    <span class="hos-phone">Ａ站1234567890　Ｂ站1234567890</span>
+                  </div>
+                  <div>
+                    <span class="fa fa-map-marker"></span>
+                    <span class="hos-address">北京市海淀区花园北路49号再写长点试一试吧看看行不行</span>
+                  </div>
+                </div>
+                <div class="hos-intro">
+                    医院简介：
+                    <p>
+                      这里是对医院的简介，可以写一些医院的比较好的科室啊什么的
+                    </p>
+                </div>
+                <div class="hos-btn">
+                  <a href="#" class="button select-hos">已选择</a>
+                </div>
+            </div>
+        </div>
+        <h6 id="department-title">我选择的科室/科室列表</h6>
+        <div class="row list" id="department-list">
+          <div class="departments-col">
+            <div class="department-name">
+              <a href="#">疼痛及肿瘤CT介入门诊 </a>
+            </div>
+            <div class="dep-btn">
+              <a href="#" class="button select-dep">选择</a>
+            </div>
+          </div>
+          <div class="departments-col">
+            <div class="department-name">
+              <a href="#">核医学科(核素治疗门诊) </a>
+            </div>
+            <div class="dep-btn">
+              <a href="#" class="button select-dep">选择</a>
+            </div>
+          </div>
+          <div class="departments-col">
+            <div class="department-name">
+              <a href="#">胸外科 </a>
+            </div>
+            <div class="dep-btn">
+              <a href="#" class="button select-dep">选择</a>
+            </div>
+          </div>
+          <div class="departments-col selected-element">
+            <div class="department-name">
+              <a href="#">计划生育科</a>
+            </div>
+            <div class="dep-btn">
+              <a href="#" class="button select-dep">已选择</a>
+            </div>
+          </div>
+        </div>
+        <h6 id="doctor-title">我选择的医生/医生列表</h6>
+        <div class="row list" id="doctor-list">
+          <div class="listrow">
+            <div class="list-img">
+              <img src="/assets/logo.png" alt=""/>
+            </div>
+            <div class="list-info">
+              <div class="list-doctor-info">
+                <span class="doctor-name"><a href="#">路人甲</a></span>
+                <span class="doctor-lv">主治医师</span>
+              </div>
+            </div>
+            <div class="doctor-intro">
+              医生简介：
+              <p>
+                这里是对医生的简介，可以写一些医生擅长的症状啊～
+              </p>
+            </div>
+            <div class="doctor-time">
+              <p>未来可预约的前五个工作时段：</p>
+                <div class="work-time morning">
+                    <span class="work-date">11/11</span>
+                    <span class="week">星期几</span>
+                </div>
+                <div class="work-time afternoon">
+                  <span class="work-date">11/11</span>
+                  <span class="week">星期几</span>
+                </div>
+                <div class="work-time morning">
+                  <span class="work-date">11/12</span>
+                  <span class="week">星期几</span>
+                </div>
+                <div class="work-time afternoon">
+                  <span class="work-date">11/12</span>
+                  <span class="week">星期几</span>
+                </div>
+                <div class="work-time morning">
+                  <span class="work-date">11/13</span>
+                  <span class="week">星期几</span>
+                </div>
+            </div>
+
+          </div>
+
+
+          <div class="listrow">
+            <div class="list-img">
+              <img src="/assets/logo.png" alt=""/>
+            </div>
+            <div class="list-info">
+              <div class="list-doctor-info">
+                <span class="doctor-name"><a href="#">路人甲</a></span>
+                <span class="doctor-lv">主治医师</span>
+              </div>
+            </div>
+            <div class="doctor-intro">
+              医生简介：
+              <p>
+                这里是对医生的简介，可以写一些医生擅长的症状啊～
+              </p>
+            </div>
+            <div class="doctor-time">
+              <p>未来可预约的前五个工作时段：</p>
+              <div class="work-time morning">
+                <span class="work-date">11/11</span>
+                <span class="week">星期几</span>
+              </div>
+              <div class="work-time afternoon">
+                <span class="work-date">11/11</span>
+                <span class="week">星期几</span>
+              </div>
+              <div class="work-time morning">
+                <span class="work-date">11/12</span>
+                <span class="week">星期几</span>
+              </div>
+              <div class="work-time afternoon">
+                <span class="work-date">11/12</span>
+                <span class="week">星期几</span>
+              </div>
+              <div class="work-time morning">
+                <span class="work-date">11/13</span>
+                <span class="week">星期几</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="listrow">
+            <div class="list-img">
+              <img src="/assets/logo.png" alt=""/>
+            </div>
+            <div class="list-info">
+              <div class="list-doctor-info">
+                <span class="doctor-name"><a href="#">路人甲</a></span>
+                <span class="doctor-lv">主治医师</span>
+              </div>
+            </div>
+            <div class="doctor-intro">
+              医生简介：
+              <p>
+                这里是对医生的简介，可以写一些医生擅长的症状啊～
+              </p>
+            </div>
+            <div class="doctor-time">
+              <p>未来可预约的前五个工作时段：</p>
+              <div class="work-time morning">
+                <span class="work-date">11/11</span>
+                <span class="week">星期几</span>
+              </div>
+              <div class="work-time afternoon">
+                <span class="work-date">11/11</span>
+                <span class="week">星期几</span>
+              </div>
+              <div class="work-time morning">
+                <span class="work-date">11/12</span>
+                <span class="week">星期几</span>
+              </div>
+              <div class="work-time afternoon">
+                <span class="work-date">11/12</span>
+                <span class="week">星期几</span>
+              </div>
+              <div class="work-time morning">
+                <span class="work-date">11/13</span>
+                <span class="week">星期几</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div id="footer">
+    <div class="row">
+      <div class="large-10 large-middle">
+
+      </div>
+    </div>
+</div>
+</body>
+</html>

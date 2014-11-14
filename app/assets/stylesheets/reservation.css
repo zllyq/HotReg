@@ -1,0 +1,437 @@
+body,*{
+    font-family: 'Microsoft Yahei',Helvetica, Arial, sans-serif;
+}
+body{
+    text-align: center;
+}
+.float-left{
+    float: left;
+}
+.float-right{
+    float: right;
+}
+#top-bar{
+    height: 40px;
+    width: 100%;
+    position: relative;
+    background-color:#F5F5F5;
+    line-height: 40px;
+    border-bottom: 1px solid #ccc;
+}
+#top-bar a{
+    font-size: 16px;
+    padding: 0px 15px;
+    color: #333;
+    display: inline-block;
+    margin: 0px;
+}
+#top-bar a:hover{
+    background-color: #ffffff;
+}
+#menu-list{
+    display: none;
+    position: absolute;
+    z-index: 10;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    top:40px;
+    right: 0px;
+    width: auto;
+    padding:0px;
+    height:auto;
+    background-color:#F5F5F5;
+}
+#menu-list a{
+    width:108px;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+}
+#menu-list a:hover{
+    background-color: #fff;
+}
+#logo-and-search-div{
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 10px 0px;
+    text-align: center;
+}
+#logo-div{
+    display: inline-block;
+    height: 100px;
+    padding: 0px 10px;
+}
+#logo{
+    max-height: 100px;
+}
+#search-div{
+    vertical-align: top;
+    display: inline-block;
+    height: 100px;
+    padding: 20px 30px;
+
+}
+#search-div input{
+    display: inline-block;
+    width: 300px;
+    height: 40px;
+    margin-top: 10px;
+    vertical-align: top;
+}
+#search-div .button{
+    display: inline-block;
+    height: 40px;
+    margin-left: -5px;
+    margin-top: 10px;
+    vertical-align: top;
+    line-height: 10px;
+    background-color: #1FB5AC;
+    border: 1px solid #1FB5AC;
+}
+#search-div .button:hover{
+    border: 1px solid #888;
+    box-shadow:0px 0px 1px 1px rgba(0,0,0,0.3);
+}
+
+#sequence-bar{
+    width: 100%;
+    height: 40px;
+    display: block;
+    position: relative;
+    background-color: #1FB5AC;
+    line-height: 40px;
+    padding-right: 10%;
+    margin-bottom: 20px;
+}
+#sequence-bar span,#sequence-bar a{
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    padding:0 12px;
+    color: #fcfcfc;
+    margin: auto;
+    margin-right: 2px;
+    background-color: transparent;
+    float: right;
+}
+#sequence-bar a:hover,#sequence-bar .active-seq{
+    background-color: rgba(0,0,0,0.1);
+    color: #fff88d;
+}
+#mid-container{
+    display: block;
+    position: relative;
+    margin: auto;
+    width: 1080px;
+    display: block;
+}
+
+#left-query-div{
+    display: inline-block;
+    vertical-align: top;
+    padding: 0px;
+    margin-top: 47px;
+    background-color: #ccc;
+    width: 240px;
+    box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.2);
+}
+#left-query-div>form>div{
+    background-color: #f5f5f5;
+    margin-bottom: 1px;
+}
+#left-query-div select{
+    width: 80%;
+}
+#left-query-div label{
+    background-color: #f5f5f5;
+}
+#right-display-div{
+    width: 800px;
+    display: inline-block;
+    vertical-align: top;
+    padding: 1px;
+    margin-left: 10px;
+}
+#selected-bar{
+    width: 100%;
+    padding: 0px 0px 0px 20px;
+    text-align: left;
+}
+.selected-unit{
+    display: inline-block;
+    vertical-align: top;
+    /*padding: 5px 5px 5px 10px;*/
+    /*padding: 5px 10px;*/
+    height: 35px;
+    /*background-color: #1FB5AC;*/
+    color: #333;
+}
+.selected-block{
+    display: inline-block;
+    /*margin-left: -15px;*/
+    margin:0px 0px 10px 0px;
+}
+.selected-block:after{
+    content: "》";
+}
+.left-arrow{
+    display: inline-block;
+    height: 35px;
+    width: 20px;
+    margin-right: -5px;
+    background-image: url('/assets/left1.png');
+}
+.right-arrow{
+    display: inline-block;
+    height: 35px;
+    width: 20px;
+    margin-left: -5px;
+    background-image: url('/assets/right1.png');
+}
+
+#info-list{
+    background-color: #fff;
+    padding: 5px 0px;
+    margin-bottom: 100px;
+    width: 100%;
+    margin-left: 0px;
+    box-shadow: 0px 0px 1px 1px #ccc;
+    text-align: left;
+}
+#info-list h6{
+    margin-left: 20px;
+}
+#info-list .list{
+    padding: 0px 0px 0px 10px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.listrow{
+    padding: 15px 0px;
+    border-top:1px solid #ccc;
+    margin-top :-1px;
+}
+.listrow>div{
+    display: inline-block;
+    vertical-align: top;
+}
+.list-img{
+    width: 100px;
+    height: 90px;
+    padding: 5px;
+}
+#hospital-list .list-img img{
+    max-width:100px;
+    max-height: 80px;
+}
+.list-info{
+    height: 90px;
+    width: 320px;
+}
+.list-hospital-info span{
+    display: inline-block;
+    margin-left: 10px;
+}
+.hos-name{
+    color: #ABC0F9;
+    font-size: 20px;
+}
+.hos-lv{
+    color: #333;
+    font-size: 16px;
+}
+.hos-phone,.hos-address{
+    font-size: 13px;
+}
+.hos-intro{
+    height: 90px;
+    width: 240px;
+    text-overflow: ellipsis;
+}
+.hos-intro p{
+    font-size: 13px;
+    color: #555;
+}
+.hos-intro span{
+    display: inline-block;
+    margin:3px 0px 0px 2px;
+    padding: 2px 5px;
+    background-color: #1FB5AC;
+    border-radius: 2px;
+    color: #fcfcfc;
+    cursor: pointer;
+}
+.hos-intro span:hover{
+    background-color: #10a79f;
+}
+.hos-btn{
+    height: 90px;
+    width: 110px;
+    padding-top: 20px;
+    padding-left: 10px;
+}
+.select-hos{
+    padding: 10px 20px;
+    background-color: #1FB5AC;
+    border-radius: 3px;
+    width: 88px;
+}
+#department-list{
+    padding: 3px !important;
+    height: auto;
+}
+#department-list .departments-col{
+    display: inline-block;
+    vertical-align: top;
+    border:1px solid #ddd;
+    position: relative;
+    height: 80px;
+    width: 255px;
+    margin: 3px;
+    padding: 0px;
+    background-color: #fff;
+}
+#department-list .departments-col .department-name{
+    width: 150px;
+    height: 80px;
+    padding-top:20px;
+    padding-left: 20px;
+    overflow: hidden;
+    display: inline-block;
+    color: #1FB5AC;
+}
+.dep-btn{
+    display: inline-block;
+    vertical-align: top;
+    height: 60px;
+    width: 90px;
+    padding-top: 20px;
+}
+.select-dep{
+    padding: 10px 20px;
+    vertical-align: top;
+    background-color: #1FB5AC;
+    border-radius: 3px;
+    width: 88px;
+}
+.selected-element .button,.selected-element .button:link,.selected-element .button:visited,.selected-element .button:hover,.selected-element .button:active{
+    background-color: #aaa;
+    cursor: default;
+}
+#doctor-list{
+    padding: 0px;
+}
+
+#doctor-list .list-img{
+    overflow: hidden;
+    padding: 0px;
+    width:80px;
+    height: 80px;
+    border-radius: 40px;
+}
+#doctor-list .list-img img{
+    width:80px;
+    height:80px;
+}
+#doctor-list .list-info{
+    height: 90px;
+    width: 90px;
+}
+.doctor-name{
+    display: block;
+    color: #ABC0F9;
+    font-size: 18px;
+}
+.doctor-lv{
+    display: block;
+    color: #333;
+    font-size: 14px;
+}
+
+.doctor-intro{
+    height: 90px;
+    width: 150px;
+}
+.doctor-intro,.doctor-intro p{
+    font-size: 13px;
+    color: #555;
+}
+.doctor-time{
+    height: 90px;
+    width: 450px;
+    padding: 20px 10px 0px 10px;
+}
+.doctor-time p{
+    display: block;
+    position: absolute;
+    color: #555;
+    font-size: 14px;
+    margin-top: -25px;
+    margin-left: 10px;
+}
+.work-time{
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: top;
+    padding-top: 10px;
+    text-align: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    border:1px;
+    border-style: solid;
+
+}
+.work-time .work-date,.work-time .week{
+    display: block;
+    font-size: 14px;
+}
+ .doctor-time .morning{
+    border-color: forestgreen;
+     color:forestgreen;
+ }
+
+.doctor-time .afternoon{
+    border-color: royalblue;
+    color: royalblue;
+}
+.doctor-time .morning:after,.doctor-time .afternoon:after{
+    display: block;
+    position: absolute;
+    font-size: 12px;
+    float: right;
+    /*background-color: #f5f5f5;*/
+
+    border-radius: 10px;
+    padding: 0px 3px;
+
+}
+.doctor-time .morning:after{
+    content: '上';
+    color: #fff;
+    background-color: #09740e;
+    top:0px;
+    right: 0px;
+
+}
+.doctor-time .afternoon:after{
+    content: '下';
+    color: #fff;
+    background-color: #005f80;
+    top:50px;
+    right: 0px;
+}
+
+#footer{
+    width: 100%;
+    position: relative;
+    display: block;
+    background-color: #1FB5AC;
+    color: #fff;
+    margin: auto 0px 0px 0px;
+    height: 150px;
+}

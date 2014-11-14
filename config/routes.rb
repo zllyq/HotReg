@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post 'users/login' => 'users#login'
   get 'users/login' => 'users#login_show'
   post 'users' => 'users#create'
+  get 'users/reservation'=>'users#reservation'
   resource :users
 
 
