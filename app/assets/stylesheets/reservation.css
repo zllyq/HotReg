@@ -112,7 +112,7 @@ body{
     padding:0 12px;
     color: #fcfcfc;
     margin: auto;
-    margin-right: 2px;
+    margin-right:2px;
     background-color: transparent;
     float: right;
 }
@@ -137,6 +137,7 @@ body{
     width: 240px;
     box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.2);
 }
+
 #left-query-div>form>div{
     background-color: #f5f5f5;
     margin-bottom: 1px;
@@ -145,6 +146,33 @@ body{
     width: 80%;
 }
 #left-query-div label{
+    background-color: #f5f5f5;
+}
+#reservation-body #select-time-period>div>input{
+    display: inline-block;
+    width: 70px;
+    vertical-align: middle;
+}
+#reservation-body #select-time-period>div>label{
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px 5px;
+}
+#select-time-period>span{
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #555;
+}
+#left-query-div .button{
+    width: 120px;
+    background-color: #1FB5AC;
+}
+#left-query-div .button:hover{
+    background-color: #0aa094;
+}
+#submit-left-query{
     background-color: #f5f5f5;
 }
 #right-display-div{

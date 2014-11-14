@@ -5,7 +5,7 @@
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <title>挂号平台</title>
 </head>
-<body>
+<body id="reservation-body">
 <div id="top-bar">
   <a href="#" class="float-left">登录</a>
   <a href="#" class="float-left">注册</a>
@@ -81,19 +81,36 @@
         </label>
       </div>
       <div id="select-time-period">
-        <label>选择起始时间
-          <select name="department_id" id="select-department">
-            <option value="null">选择起始时间</option>
-            <option value="001">...</option>
-          </select>
-        </label>
-        <label>选择截止时间
-          <select name="department_id" id="select-department">
-            <option value="null">选择结束时间</option>
-            <option value="001">...</option>
-          </select>
-        </label>
+        <span>选择起始时间</span>
+
+        <div>
+            <input type="text" name="start_month" class="month-input"/>
+
+            <label for="start_month">
+              月
+            </label>
+            <input type="text" name="start_day" class="day-input"/>
+            <label for="start_day">
+              日
+            </label>
+        </div>
+        <span>选择结束时间</span>
+        <div>
+            <input type="text" name="end_month" class="month-input"/>
+            <label for="end_month">
+              月
+            </label>
+            <input type="text" name="end_day" class="day-input"/>
+
+            <label for="end_day">
+              日
+            </label>
+        </div>
+        <div id="submit-left-query">
+          <div class="button"><span class="fa fa-search"></span>搜索</div>
+        </div>
       </div>
+
     </form>
   </div>
 
