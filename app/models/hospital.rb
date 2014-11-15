@@ -1,5 +1,5 @@
 class Hospital < ActiveRecord::Base
-  has_one :grade
-  has_one :province
-  has_one :city
+  belongs_to :grade
+  belongs_to :province
+  belongs_to :city
 end

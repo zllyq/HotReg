@@ -2,15 +2,15 @@ class CreateHospitals < ActiveRecord::Migration
   def change
     create_table :hospitals do |t|
       t.string :name, :null => false
-      t.references :provinces
-      t.string :provinces_name, :limit => 31
-      t.references :cities
-      t.string :cities_name, :limit => 31
+      t.references :province
+      t.string :province_name, :limit => 31
+      t.references :city
+      t.string :city_name, :limit => 31
       t.string :address, :null => false
-      t.references :grades
+      t.references :grade
       t.string :grades_name, :limit => 31
-      t.references :majors
-      t.string :majors_name, :limit => 31
+      t.references :major
+      t.string :major_name, :limit => 31
       t.string :phone
       t.text :introduction
 

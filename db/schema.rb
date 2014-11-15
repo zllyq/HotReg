@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141111042626) do
+ActiveRecord::Schema.define(version: 20141114143430) do
 
   create_table "calendars", force: true do |t|
     t.integer  "doctor_id"
-    t.integer  "type"
+    t.integer  "types"
     t.integer  "access",     default: 0
     t.date     "off_start"
     t.date     "off_end"
@@ -38,18 +38,21 @@ ActiveRecord::Schema.define(version: 20141111042626) do
     t.datetime "updated_at"
   end
 
+  add_index "departments", ["Hospital_id", "name"], name: "index_departments_on_Hospital_id_and_name", unique: true, using: :btree
+  add_index "departments", ["ids"], name: "index_departments_on_ids", unique: true, using: :btree
+
   create_table "doctors", force: true do |t|
     t.string   "ids"
     t.string   "name",          null: false
     t.integer  "department_id"
     t.integer  "major_id"
-    t.string   "major_name"
     t.string   "grade"
     t.text     "introduction"
-    t.integer  "calendar_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "doctors", ["ids"], name: "index_doctors_on_ids", unique: true, using: :btree
 
   create_table "grades", force: true do |t|
     t.integer "code"
@@ -73,6 +76,8 @@ ActiveRecord::Schema.define(version: 20141111042626) do
     t.datetime "updated_at"
   end
 
+  add_index "hospitals", ["phone"], name: "index_hospitals_on_phone", unique: true, using: :btree
+
   create_table "majors", force: true do |t|
     t.integer "code"
     t.string  "name",         limit: 31, null: false
@@ -82,6 +87,7 @@ ActiveRecord::Schema.define(version: 20141111042626) do
   create_table "orders", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status",     default: 0
   end
 
   create_table "provinces", force: true do |t|

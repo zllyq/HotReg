@@ -14,7 +14,7 @@ class InformationController < ApplicationController
       return false
     end
 
-    provinces = Province.take(10)
+    provinces = Province.select('id','name')
     if provinces
       render json: {:status => 1,:data => provinces}
       return true
@@ -79,6 +79,28 @@ class InformationController < ApplicationController
       return false
     end
 
+    para = params[:filter]
+    filters = {}
+    condition = 'name LIKE %:name% '
+
+    if para[:name].blank?
+      filters[:name] = ''
+    else
+      filters[:name] = para[:name]
+    end
+
+    unless para[:provinces_id].blank?
+      condition += ' AND province_id = :province_id'
+      filters[:province_id] = para[:provinces_id]
+    end
+
+    unless para[:cities_id]
+
+    end
+    province_id = para[:provinces_id]
+    city_id = para[:cities_id]
+    major_id = para[:majors_id]
+
     hospitals = Hospital.take(10)
     if hospitals
       render json: {:status => 1,:data => hospitals}
@@ -86,6 +108,14 @@ class InformationController < ApplicationController
     end
     render json: {:status => 0,:error => '还没有医院呢'}
     false
+  end
+
+  def departments
+
+  end
+
+  def doctors
+
   end
 
   def create_hospital
@@ -132,6 +162,7 @@ class InformationController < ApplicationController
       render :json => {:status => 1}
       return true
     end
+
     render :json => {:status => 0, :error => '保存失败'}
     false
   end
@@ -142,8 +173,20 @@ class InformationController < ApplicationController
       return false
     end
 
+    para = params[:doctor]
 
+    begin
+      doctor = Doctor.new
+      try doctor.init(para)
+      @json = {:status => 1, :data => {:doctor_id => doctor.id}}
+    rescue
+      @json = {:status => 0, :error => '保存失败'}
+    ensure
+      render json: @json
+    end
 
   end
+
+
 
 end

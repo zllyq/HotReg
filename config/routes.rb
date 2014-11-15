@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   post 'users/login' => 'users#login'
   get 'users/login' => 'users#login_show'
   post 'users' => 'users#create'
-  get 'users/reservation'=>'users#reservation'
   resource :users
 
 
@@ -17,7 +16,10 @@ Rails.application.routes.draw do
 
   post 'information/create_hospital' => 'information#create_hospital'
   post 'information/create_department' => 'information#create_department'
+  post 'information/create_doctor' => 'information#create_doctor'
   resource :information
+
+  resource :order
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

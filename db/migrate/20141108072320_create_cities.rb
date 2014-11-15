@@ -3,7 +3,7 @@ class CreateCities < ActiveRecord::Migration
     create_table :cities do |t|
       t.integer :code, :unique => true
       t.string :name, :null => false
-      t.belongs_to :provinces
+      t.belongs_to :province
     end
   end
 end

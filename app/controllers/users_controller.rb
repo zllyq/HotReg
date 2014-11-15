@@ -75,8 +75,4 @@ class UsersController < ApplicationController
   def redirect_user
 
   end
-
-  def reservation
-    render 'reservation'
-  end
 end
