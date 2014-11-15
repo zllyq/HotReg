@@ -73,6 +73,12 @@ class InformationController < ApplicationController
     false
   end
 
+  #@param:filter
+  # name:医院名
+  # provinces_id:省份id
+  # cities_id:城市id
+  # major_id:专业id
+  # page:页数
   def hospitals
     unless token?
       render json: {:status => 0,:error => 'token验证失败'}
@@ -80,42 +86,84 @@ class InformationController < ApplicationController
     end
 
     para = params[:filter]
-    filters = {}
-    condition = 'name LIKE %:name% '
+    _filter = conditioner(para)
+    filters = _filter[0]
+    condition = _filter[1]
 
-    if para[:name].blank?
-      filters[:name] = ''
-    else
-      filters[:name] = para[:name]
+
+    begin
+      hospitals = Hospital.where(condition,filters).limit(filters[:limit]).offset(filters[:offset])
+      if hospitals
+        @json = {:status => 1,:data => hospitals}
+        return true
+      end
+        @json = {:status => 0,:error => '还没有这种医院呢'}
+    rescue
+      @json = {:status => 0,:error => '查询失败'}
+    ensure
+      render json: @json
+      return @json[:status]
     end
 
-    unless para[:provinces_id].blank?
-      condition += ' AND province_id = :province_id'
-      filters[:province_id] = para[:provinces_id]
-    end
 
-    unless para[:cities_id]
-
-    end
-    province_id = para[:provinces_id]
-    city_id = para[:cities_id]
-    major_id = para[:majors_id]
-
-    hospitals = Hospital.take(10)
-    if hospitals
-      render json: {:status => 1,:data => hospitals}
-      return true
-    end
-    render json: {:status => 0,:error => '还没有医院呢'}
-    false
   end
 
+  ###
+  # @param:filter
+  # hospitals_id:所属医院
+  # name:科室名称
+  # page:页数
+  # ###
   def departments
+    unless token?
+      render json:  {:status => 0, :error => 'token验证失败'}
+      return false
+    end
+
+    para = params[:filter]
+    _filer = conditioner(para)
+    filters = _filer[0]
+    condition = _filer[1]
+    data = Department.where(condition,filters).limit(filters[:limit]).offset(filters[:offset])
+
+    if data.empty?
+      @json = {status:0,error:'没有这样的科室'}
+    else
+      @json = {status:1,data:data}
+    end
+
+    render json: @json
+    true
 
   end
 
+  ###
+  # @param:filter
+  # departments_id: 所属科室
+  # majors_id: 所属专业
+  # name: 姓名
+  # grades: 等级
+  # page: 页数
+  # ###
   def doctors
+    unless token?
+      render json:  {:status => 0, :error => 'token验证失败'}
+      return false
+    end
+    para = params[:filter]
+    _filter = conditioner(para)
+    filters = _filter[0]
+    condition = _filter[1]
 
+    data = Doctor.where(condition,filters).limit(filters[:limit]).offset(filters[:offset])
+
+    if data.empty?
+      @json = {status:0,error:'没有这样的医生'}
+    else
+      @json = {status:1,data:data}
+    end
+
+    render :json => @json
   end
 
   def create_hospital
@@ -167,6 +215,10 @@ class InformationController < ApplicationController
     false
   end
 
+  ###
+  #
+  #
+  # ###
   def create_doctor
     unless admin?
       render json: {:status => 0,:error => '该用户没有创建权限'}
@@ -177,7 +229,7 @@ class InformationController < ApplicationController
 
     begin
       doctor = Doctor.new
-      try doctor.init(para)
+      doctor.init(para)
       @json = {:status => 1, :data => {:doctor_id => doctor.id}}
     rescue
       @json = {:status => 0, :error => '保存失败'}
@@ -187,6 +239,9 @@ class InformationController < ApplicationController
 
   end
 
+  def edit_hospital
+
+  end
 
 
 end
