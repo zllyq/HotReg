@@ -109,12 +109,12 @@ class InformationController < ApplicationController
 
   end
 
-  ###
-  # @param:filter
+
+  #@param:filter
   # hospitals_id:所属医院
   # name:科室名称
   # page:页数
-  # ###
+  #
   def departments
     unless token?
       render json:  {:status => 0, :error => 'token验证失败'}
@@ -138,14 +138,13 @@ class InformationController < ApplicationController
 
   end
 
-  ###
-  # @param:filter
+
+  #@param:filter
   # departments_id: 所属科室
   # majors_id: 所属专业
   # name: 姓名
   # grades: 等级
   # page: 页数
-  # ###
   def doctors
     unless token?
       render json:  {:status => 0, :error => 'token验证失败'}
