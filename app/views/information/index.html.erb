@@ -310,10 +310,10 @@
       <div class="row">
         <div class="medium-10 medium-centered large-10 large-centered columns">
           <label for="calendar">设置医生出勤时间
-            <input type="button" class="button" value="编辑医生出勤信息" style="padding:10px 15px;font-size: 14px" onclick="$('#set-calendar-window').show()">
+            <input type="button" class="button" value="编辑医生出勤信息" style="padding:10px 15px;font-size: 14px" onclick="$('#set-calendar-window').show();fill_week_table_by_week_calendar(parseInt(document.getElementById('calendar-input').value));">
           </label>
           <label for="calendar">医生出勤编码(可由编辑医生出勤信息生成)
-            <input type="text" id="calendar-input" name="calendar" style="" placeholder="医生出勤编码"/>
+            <input type="text" id="calendar-input" name="calendar" style="" placeholder="医生出勤编码" value="1023"/>
           </label>
 
         </div>
@@ -586,13 +586,15 @@
 
 
     @fill_week_table_by_week_calendar = (week_calendar)->
-        week_day=$('#week-table>div')
-        string = calculate_week_calendar_by_number(week_calendar)
-        for char,i in string
-            if char is "0"
-                $(week_day[i]).attr class:"unselected"
-            else
-                $(week_day[i]).attr class:"selected"
+        if(week_calendar is "")
+        else
+            week_day=$('#week-table>div')
+            string = calculate_week_calendar_by_number(week_calendar)
+            for char,i in string
+                if char is "0"
+                    $(week_day[i]).attr class:"unselected"
+                else
+                    $(week_day[i]).attr class:"selected"
 
     @set_calendar_value = ()->
         $('#calendar-input').val(calculate_week_number())
@@ -600,9 +602,6 @@
         #alert($('#calendar-input').val())
         #alert(document.getElementById('calendar-input').value)
 
-
-
-
     init_list()
-    fill_week_table_by_week_calendar(64)
+    fill_week_table_by_week_calendar(parseInt(document.getElementById('calendar-input').value))
 </script>
