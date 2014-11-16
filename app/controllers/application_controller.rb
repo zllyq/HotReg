@@ -40,12 +40,16 @@ class ApplicationController < ActionController::Base
 
 protected
   def conditioner(para)
-    filters = {}
-    condition = '1 = 1'
+    filters = {:limit => 5,offset:0}
+    condition = '1 = 1 '
+
+    if para.nil?
+      return [filters,condition]
+    end
 
     unless para[:name].blank?
-      filters[:name] = para[:name]
-      condition += 'AND name LIKE %:name% '
+      filters[:name] = '%' + para[:name] + '%'
+      condition += 'AND name LIKE :name '
     end
 
     unless para[:provinces_id].blank?

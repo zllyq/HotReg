@@ -93,13 +93,14 @@ class InformationController < ApplicationController
 
     begin
       hospitals = Hospital.where(condition,filters).limit(filters[:limit]).offset(filters[:offset])
-      if hospitals
+      sql =  Hospital.where(condition,filters).limit(filters[:limit]).offset(filters[:offset]).to_sql
+      unless hospitals.empty?
         @json = {:status => 1,:data => hospitals}
         return true
       end
         @json = {:status => 0,:error => '还没有这种医院呢'}
     rescue
-      @json = {:status => 0,:error => '查询失败'}
+      @json = {:status => 0,:error => $!}
     ensure
       render json: @json
       return @json[:status]

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114143430) do
+ActiveRecord::Schema.define(version: 20141115115637) do
+
+  create_table "City", primary_key: "CID", force: true do |t|
+    t.integer "CityID",              null: false
+    t.string  "CityName", limit: 50
+    t.integer "ParentID"
+  end
+
+  create_table "Province", primary_key: "ProID", force: true do |t|
+    t.string "Area",         limit: 20, null: false
+    t.string "ProvinceName", limit: 50, null: false
+  end
 
   create_table "calendars", force: true do |t|
     t.integer  "doctor_id"

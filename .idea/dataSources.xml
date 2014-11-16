@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3992963406">
+  <component name="DataSourceManagerImpl" format="xml" hash="2933376219">
     <data-source source="LOCAL" name="Rails HotReg: development" uuid="900e9a75-9dd4-4256-8454-a4d4af6d0152">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/hospital</jdbc-url>
       <user-name>root</user-name>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails HotReg: test" uuid="6fb2cab2-ca66-43bb-b447-260f0c933c91">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/test.sqlite3</jdbc-url>
       <libraries />
     </data-source>
   </component>
