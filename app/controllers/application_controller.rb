@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     return false unless true == login?
     session['types'] > 1
   end
-
+public
   def auto_home
     unless session['login?']
       redirect_to '/users/login_show'
