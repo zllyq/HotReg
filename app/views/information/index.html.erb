@@ -29,10 +29,10 @@
         <a href="#">添加医院</a>
       </li>
       <li class="">
-        <a href="#">添加科室</a>
+        <a href="javascript:$('#department-block').show()" >添加科室</a>
       </li>
       <li class="">
-        <a href="#">添加医生</a>
+        <a href="javascript:$('#doctor-block').show()" >添加医生</a>
       </li>
       <li class="has-dropdown not-click">
         <a href="#">菜单</a>
@@ -180,7 +180,7 @@
               <div class="departments">科室4 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
               <div class="departments">科室5 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
               <div class="departments">科室6 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
-              <div id="add-department">添加科室</div>
+              <div id="add-department" onclick="$('#department-block').show()">添加科室</div>
 
             </div>
           </label>
@@ -200,130 +200,139 @@
   </div>
 </div>
 <!--科室信息-->
-<div class="row new" id="new-department">
-  <div class=" medium-10 medium-centered large-10 large-centered columns" id="department-window">
-    <!--<div class="row">-->
-    <!--<div class="medium-10 medium-offset-2 large-10 large-offset-1 columns " style="font-size: 30px;">-->
-    <!--<span>科室信息管理</span> <span id="department-name-zip">科室名称</span>-->
-    <!--</div>-->
-    <!--</div>-->
-    <form id="form-department" action="/information/create_department">
-      <div class="row">
-        <div class="medium-10 medium-centered large-10 large-centered columns">
-          <label>科室名称
-            <input type="text" name="name" placeholder="请输入科室名称" required>
-          </label>
+<div class="full-screen-blur" id="department-block">
+  <div class="row new" id="new-department">
+    <div class=" medium-10 medium-centered large-10 large-centered columns" id="department-window">
+      <!--<div class="row">-->
+      <!--<div class="medium-10 medium-offset-2 large-10 large-offset-1 columns " style="font-size: 30px;">-->
+      <!--<span>科室信息管理</span> <span id="department-name-zip">科室名称</span>-->
+      <!--</div>-->
+      <!--</div>-->
+      <form id="form-department" action="/information/create_department">
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns">
+            <label>科室名称
+              <input type="text" name="name" placeholder="请输入科室名称" required>
+            </label>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="medium-10 medium-centered large-10 large-centered columns">
-          <label>科室简介
-            <textarea name="introduction" placeholder="请输入科室简介"></textarea>
-          </label>
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns">
+            <label>科室简介
+              <textarea name="introduction" placeholder="请输入科室简介"></textarea>
+            </label>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="medium-5 medium-offset-1 large-5 large-offset-1 columns">
-          <label>所属医院
-            <select name="hospitals" id="select-hospital">
-              <option value="null">请选择医院</option>
+        <div class="row">
+          <div class="medium-5 medium-offset-1 large-5 large-offset-1 columns">
+            <label>所属医院
+              <select name="department-level" id="select-hospital">
+                <option value="null">请选择医院</option>
 
-            </select>
-          </label>
-        </div>
+              </select>
+            </label>
+          </div>
 
-        <div class="medium-5 medium-pull-1 large-5 large-pull-1  columns">
-          <label>编号
-            <input name="ids" type="text" placeholder="请输入科室编号" required>
-          </label>
+          <div class="medium-5 medium-pull-1 large-5 large-pull-1  columns">
+            <label>编号
+              <input name="ids" type="text" placeholder="请输入科室编号" required>
+            </label>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="medium-10 medium-centered large-10 large-centered columns">
-          <label>管理医生
-            <div id="manage-doctor">
-              <div class="doctors selected">医生1 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
-              <div class="doctors">医生2 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
-              <div class="doctors">医生3 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
-              <div class="doctors">医生4 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
-              <div class="doctors">医生5 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
-              <div class="doctors">医生6 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
-              <div class="doctors">名字很长君 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
-              <div id="add-doctor">添加医生</div>
-            </div>
-          </label>
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns">
+            <label>管理医生
+              <div id="manage-doctor">
+                <div class="doctors selected">szmSabby <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+                <div class="doctors">医生2 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+                <div class="doctors">医生3 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+                <div class="doctors">医生4 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+                <div class="doctors">医生5 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+                <div class="doctors">医生6 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+                <div class="doctors">名字很长君 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+                <div id="add-doctor" class="button" onclick="show_new('doctor')">添加医生</div>
+              </div>
+            </label>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="medium-10 medium-centered large-10 large-centered columns" style="text-align: center;">
-          <button class="button small" type="button" id="submit-department">保存并关闭</button>
-          <button class="button small">取消此编辑</button>
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns" style="text-align: center;">
+            <button class="button small" type="button" id="submit-department" onclick="$('#department-block').hide()">保存并关闭</button>
+            <button class="button small">取消此编辑</button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
 
+    </div>
   </div>
 </div>
 <!--医生信息-->
-<div class="row new" id="new-doctor">
-  <div class=" medium-10 medium-centered large-10 large-centered columns" id="doctor-window">
-    <!--<div class="row">-->
-    <!--<div class="medium-10 medium-offset-2 large-10 large-offset-1 columns " style="font-size: 30px;">-->
-    <!--<span>医生信息管理</span>-->
-    <!--</div>-->
-    <!--</div>-->
-    <form id="form-doctor">
-      <div class="row">
-        <div class="medium-5 medium-offset-1 large-5 large-offset-1 columns">
-          <label>所在医院
-            <select name="hospitals" id="select-hospital" required="">
-              <option>请选择医院</option>
 
-            </select>
-          </label>
+<div class="full-screen-blur" id="doctor-block">
+  <div class="row new" id="new-doctor">
+    <div class=" medium-10 medium-centered large-10 large-centered columns" id="doctor-window">
+      <!--<div class="row">-->
+      <!--<div class="medium-10 medium-offset-2 large-10 large-offset-1 columns " style="font-size: 30px;">-->
+      <!--<span>医生信息管理</span>-->
+      <!--</div>-->
+      <!--</div>-->
+      <form id="form-doctor">
+        <div class="row">
+          <div class="medium-5 medium-offset-1 large-5 large-offset-1 columns">
+            <label>所在医院
+              <select name="hospitals" id="select-hospital" required="">
+                <option>请选择医院</option>
+
+              </select>
+            </label>
+          </div>
+
+          <div class="medium-5 medium-pull-1 large-5 large-pull-1  columns">
+            <label>所在科室
+              <select name="departments" id="select-department">
+                <option value="null">请选择所在科室</option>
+
+              </select>
+            </label>
+          </div>
         </div>
 
-        <div class="medium-5 medium-pull-1 large-5 large-pull-1  columns">
-          <label>所在科室
-            <select name="departments" id="select-department">
-              <option value="null">请选择所在科室</option>
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns">
+            <label>医生姓名
+              <input type="text" name="name" placeholder="请输入医生姓名">
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns">
+            <label>医生简介
+              <textarea name="introduction" placeholder="请输入医生简介"></textarea>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns">
+            <label for="calendar">设置医生出勤时间
+              <input type="button" class="button" value="编辑医生出勤信息" style="padding:10px 15px;font-size: 14px" onclick="$('#set-calendar-window').show();fill_week_table_by_week_calendar(parseInt(document.getElementById('calendar-input').value));">
+            </label>
+            <label for="calendar">医生出勤编码(可由编辑医生出勤信息生成)
+              <input type="text" id="calendar-input" name="calendar" style="" placeholder="医生出勤编码" value="1023"/>
+            </label>
 
-            </select>
-          </label>
+          </div>
         </div>
-      </div>
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns" style="text-align: center;">
+            <a href="#" class="button [tiny small large]" onclick="$('#doctor-block').hide()">保存并关闭</a>
+            <a href="#" class="button [tiny small large]">取消此编辑</a>
+          </div>
+        </div>
+      </form>
 
-      <div class="row">
-        <div class="medium-10 medium-centered large-10 large-centered columns">
-          <label>医生姓名
-            <input type="text" name="name" placeholder="请输入医生姓名">
-          </label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="medium-10 medium-centered large-10 large-centered columns">
-          <label>医生简介
-            <textarea name="introduction" placeholder="请输入医生简介"></textarea>
-          </label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="medium-10 medium-centered large-10 large-centered columns">
-          <label for="calendar">医生出勤时间
-            <input type="button" id="" name="calendar" class="button" value="点击编辑医生出勤信息" style="padding:10px 15px;font-size: 14px" onclick="$('#set-calendar-window').show()">
-          </label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="medium-10 medium-centered large-10 large-centered columns" style="text-align: center;">
-          <a href="#" class="button [tiny small large]">保存并关闭</a>
-          <a href="#" class="button [tiny small large]">取消此编辑</a>
-        </div>
-      </div>
-    </form>
+    </div>
 
   </div>
-
 </div>
 
 <div id="set-calendar-window" class="full-screen-blur">
@@ -369,7 +378,7 @@
           <div>下午</div>
           <div>下午</div>
         </div>
-        <button type="button" class="button" style="margin-top: 15px;padding: 8px 20px;" onclick="calculate_week_number()">确定</button>
+        <button type="button" class="button" style="margin-top: 15px;padding: 8px 20px;" onclick="calculate_week_number();set_calendar_value();$('#set-calendar-window').hide()">确定</button>
       </div>
       <div id="select-by-month" style="text-align: center">
         <div id="month-table">
@@ -443,7 +452,8 @@
 <script type="text/coffeescript">
     console.log(1)
     @show_new = (name) ->
-        $('.new').hide()
+        #$('.new').hide()
+        $('#' + name+'-block').show()
         $('#new-' + name).show()
 
     fill_up_select = (data,select) ->
@@ -528,33 +538,71 @@
             $(day).attr class:'unselected'
 
     @calculate_week_number = ()->
+        week_string=new Array()
         week_number=""
+
         week_day=$('#week-table>div')
         for day,i in week_day
             if $(day).attr('class') is 'selected'
                 week_number+="1"
             else
                 week_number+="0"
-        alert(week_number)
-        week_calendar=parseInt(week_number,2)
-        alert(week_calendar)
-        alert(calculate_week_calendar_by_number(week_calendar))
+        #console.log(week_number)
+
+        for chars,i in week_number
+            if(i<7)
+                week_string[i*2]=chars
+            else
+                week_string[(i-7)*2+1]=chars
+
+        week_string=week_string.reverse()
+        calendar=week_string.join("")
+        #alert(calendar)
+        week_calendar=parseInt(calendar,2)
+        #console.log(week_calendar)
+#        console.log(calculate_week_calendar_by_number(week_calendar))
+        return week_calendar
+
 
     @calculate_week_calendar_by_number = (week_calendar)->
-        return week_calendar.toString(2)
+        week_string=week_calendar.toString(2)
+        if week_string.length<14
+            i=week_string.length
+            week_string=week_string.split("").reverse().join("")
+            while i<14
+                week_string+="0"
+                i++
+        else
+            week_string=week_string.split("").reverse().join("")
+        week_arr=week_string.split("")
+        week_arr_new=new Array()
+        for str,i in week_arr
+            if((i%2)is 0)
+                week_arr_new[i/2]=str
+            else
+                week_arr_new[i+6]=str
+        week_calendar=week_arr_new.join("")
+        return week_calendar
+
+
 
     @fill_week_table_by_week_calendar = (week_calendar)->
-        week_day=$('#week-table>div')
-        string = calculate_week_calendar_by_number(week_calendar)
-        for char,i in string
-            if char is "0"
-                $(week_day[i]).attr class:"unselected"
-            else
-                $(week_day[i]).attr class:"selected"
+        if(week_calendar is "")
+        else
+            week_day=$('#week-table>div')
+            string = calculate_week_calendar_by_number(week_calendar)
+            for char,i in string
+                if char is "0"
+                    $(week_day[i]).attr class:"unselected"
+                else
+                    $(week_day[i]).attr class:"selected"
 
-
-
+    @set_calendar_value = ()->
+        $('#calendar-input').val(calculate_week_number())
+        document.getElementById('calendar-input').value=calculate_week_number()
+        #alert($('#calendar-input').val())
+        #alert(document.getElementById('calendar-input').value)
 
     init_list()
-    fill_week_table_by_week_calendar(14956)
+    fill_week_table_by_week_calendar(parseInt(document.getElementById('calendar-input').value))
 </script>

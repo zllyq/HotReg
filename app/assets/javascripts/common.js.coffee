@@ -43,7 +43,7 @@
       $('#alert-info').html data.error
       $('#error-alerter').show()
     else
-      $('#success-alerter').show()
+      #$('#success-alerter').show()
       setTimeout(() ->
                   $('#success-alerter').hide(500)
       ,3000 )

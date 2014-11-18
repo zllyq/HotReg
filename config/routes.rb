@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post 'information/create_hospital' => 'information#create_hospital'
   post 'information/create_department' => 'information#create_department'
   post 'information/create_doctor' => 'information#create_doctor'
+  get 'information/auto_home' => 'information#auto_home'
   resource :information
 
   resource :order

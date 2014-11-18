@@ -3,8 +3,7 @@
     submit_form($('#new-form'),'users',(data)->submit_success(data))
 
   before_login = () ->
-    alert(1)
-    submit_form($('#login-form'),'users',(data)->submit_success(data))
+    submit_form($('#login-form'),'users',(data) -> window.location.href = '/information/auto_home' if data.status,)
 
   binds = () ->
     $('#new_submit').click(check_new_info)
