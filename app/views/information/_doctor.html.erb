@@ -1,0 +1,181 @@
+<div class="full-screen-blur" id="doctor-block">
+  <div class="row new" id="new-doctor">
+    <div class=" medium-10 medium-centered large-10 large-centered columns" id="doctor-window">
+      <!--<div class="row">-->
+      <!--<div class="medium-10 medium-offset-2 large-10 large-offset-1 columns " style="font-size: 30px;">-->
+      <!--<span>医生信息管理</span>-->
+      <!--</div>-->
+      <!--</div>-->
+      <form id="form-doctor">
+        <div class="row">
+          <div class="medium-5 medium-offset-1 large-5 large-offset-1 columns">
+            <label>所在医院
+              <select name="hospitals" id="select-hospital" required="">
+                <option>请选择医院</option>
+
+              </select>
+            </label>
+          </div>
+
+          <div class="medium-5 medium-pull-1 large-5 large-pull-1  columns">
+            <label>所在科室
+              <select name="departments" id="select-department">
+                <option value="null">请选择所在科室</option>
+
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns">
+            <label>医生姓名
+              <input type="text" name="name" placeholder="请输入医生姓名">
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns">
+            <label>医生简介
+              <textarea name="introduction" placeholder="请输入医生简介"></textarea>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns">
+            <label for="calendar">设置医生出勤时间
+              <input type="button" class="button" value="编辑医生出勤信息" style="padding:10px 15px;font-size: 14px" onclick="$('#set-calendar-window').show();fill_week_table_by_week_calendar(parseInt(document.getElementById('calendar-input').value));">
+            </label>
+            <label for="calendar">医生出勤编码(可由编辑医生出勤信息生成)
+              <input type="text" id="calendar-input" name="calendar" style="" placeholder="医生出勤编码" value="1023"/>
+            </label>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns" style="text-align: center;">
+            <a href="#" class="button [tiny small large]" onclick="$('#doctor-block').hide()">保存并关闭</a>
+            <a href="#" class="button [tiny small large]">取消此编辑</a>
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+</div>
+
+<div id="set-calendar-window" class="full-screen-blur">
+
+  <div id="calendar-window">
+    <span id="close-calendar" onclick="$('#set-calendar-window').hide()">X</span>
+    <div id="select-frequence">
+      <p>
+        请选择按月出勤还是按周出勤
+      </p>
+      <div onclick="$('#select-by-month').hide();$('#select-by-week').show();">
+        按周
+      </div>
+      <div onclick="$('#select-by-week').hide();$('#select-by-month').show()">
+        按月
+      </div>
+    </div>
+    <div id="select-by-week" style="text-align: center">
+      <div id="week-th">
+        <div>周一</div>
+        <div>周二</div>
+        <div>周三</div>
+        <div>周四</div>
+        <div>周五</div>
+        <div>周六</div>
+        <div>周日</div>
+      </div>
+
+      <div id="week-table">
+
+        <div>上午</div>
+        <div>上午</div>
+        <div>上午</div>
+        <div>上午</div>
+        <div>上午</div>
+        <div>上午</div>
+        <div>上午</div>
+        <div>下午</div>
+        <div>下午</div>
+        <div>下午</div>
+        <div>下午</div>
+        <div>下午</div>
+        <div>下午</div>
+        <div>下午</div>
+      </div>
+      <button type="button" class="button" style="margin-top: 15px;padding: 8px 20px;" onclick="calculate_week_number();set_calendar_value();$('#set-calendar-window').hide()">确定</button>
+    </div>
+    <div id="select-by-month" style="text-align: center">
+      <div id="month-table">
+        <div>1:上午</div>
+        <div>2:上午</div>
+        <div>3:上午</div>
+        <div>4:上午</div>
+        <div>5:上午</div>
+        <div>6:上午</div>
+        <div>7:上午</div>
+        <div>1:下午</div>
+        <div>2:下午</div>
+        <div>3:下午</div>
+        <div>4:下午</div>
+        <div>5:下午</div>
+        <div>6:下午</div>
+        <div>7:下午</div>
+        <div>8:上午</div>
+        <div>9:上午</div>
+        <div>10:上午</div>
+        <div>11:上午</div>
+        <div>12:上午</div>
+        <div>13:上午</div>
+        <div>14:上午</div>
+        <div>8:下午</div>
+        <div>9:下午</div>
+        <div>10:下午</div>
+        <div>11:下午</div>
+        <div>12:下午</div>
+        <div>13:下午</div>
+        <div>14:下午</div>
+        <div>15:上午</div>
+        <div>16:上午</div>
+        <div>17:上午</div>
+        <div>18:上午</div>
+        <div>19:上午</div>
+        <div>20:上午</div>
+        <div>21:上午</div>
+        <div>15:下午</div>
+        <div>16:下午</div>
+        <div>17:下午</div>
+        <div>18:下午</div>
+        <div>19:下午</div>
+        <div>20:下午</div>
+        <div>21:下午</div>
+        <div>22:上午</div>
+        <div>23:上午</div>
+        <div>24:上午</div>
+        <div>25:上午</div>
+        <div>26:上午</div>
+        <div>27:上午</div>
+        <div>28:上午</div>
+        <div>22:下午</div>
+        <div>23:下午</div>
+        <div>24:下午</div>
+        <div>25:下午</div>
+        <div>26:下午</div>
+        <div>27:下午</div>
+        <div>28:下午</div>
+        <div>29:上午</div>
+        <div>30:上午</div>
+        <div>31:上午</div>
+        <div>29:下午</div>
+        <div>30:下午</div>
+        <div>31:下午</div>
+      </div>
+      <button type="button" class="button" style="margin-top: 15px;padding: 8px 20px;">确定</button>
+    </div>
+  </div>
+</div>

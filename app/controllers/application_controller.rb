@@ -3,8 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  protected
-
+protected
   def login?
     session['login?']
   end
@@ -47,24 +46,34 @@ protected
       return [filters,condition]
     end
 
+    unless para[:id].blank?
+      filters[:id] = para[:id]
+      condition += 'AND id = :id'
+      return [filters,condition]
+    end
+
     unless para[:name].blank?
       filters[:name] = '%' + para[:name] + '%'
       condition += 'AND name LIKE :name '
     end
 
     unless para[:provinces_id].blank?
-      condition += ' AND provinces_id = :province_id'
-      filters[:provinces_id] = para[:provinces_id]
+      condition += ' AND provinces_id = :provinces_id'
+      filters[:provinces_id] = para[:provinces_id].to_i
     end
 
     unless para[:cities_id].blank?
       condition += ' AND cities_id = :cities_id'
-      filters[:cities_id] = para[:cities_id]
+      filters[:cities_id] = para[:cities_id].to_i
     end
 
     unless para[:majors_id].blank?
       condition += ' AND majors_id = :majors_id'
       filters[:majors_id] = para[:majors_id]
+    end
+    unless para[:grades_id].blank?
+      condition += ' AND grades_id = :grades_id'
+      filters[:grades_id] = para[:grades_id]
     end
 
     #科室专属

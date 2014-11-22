@@ -1,0 +1,333 @@
+<div class="row index" id="index-hospital">
+  <div class="medium-10 medium-centered large-10 large-centered columns">
+    <table style="width: 100%; cursor: pointer" id="dataset-hospital">
+      <thead>
+      <tr>
+        <th>名称</th>
+        <th>地区</th>
+        <th>专业</th>
+        <th>等级</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @hospitals.each do |h| %>
+          <tr>
+            <td style="display: none">
+              <%= h.id %>
+            </td>
+            <td>
+              <%= h.name %>
+            </td>
+            <td>
+              <%= h.provinces_name + h.cities_name %>
+            </td>
+            <td>
+              <%= h.majors_name %>
+            </td>
+            <td>
+              <%= h.grades_name %>
+            </td>
+            <td>
+              <a class="button alert tiny">删除</a>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<% content_for :search do %>
+    <div class=" medium-10 medium-centered large-10 large-centered columns" id="search-hospital">
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <form action="/information/hospitals" id="form-search-hospital">
+            <div class="row">
+              <div class="medium-4 column">
+                <label>
+                    <input type="text" name="name" placeholder="医院名称">
+                </label>
+              </div>
+              <div class="medium-4 column">
+                <label>
+                  <select name="provinces" class="select-province">
+                    <option data-id="" value="">请选择省/直辖市</option>
+                  </select>
+                </label>
+              </div>
+              <div class="medium-4 column">
+                <label>
+                  <select name="cities" class="select-city">
+                    <option data-id="" value="">请选择市</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="medium-4 column">
+                <select name="majors" class="select-major">
+                  <option data-id="" value="">选择专业</option>
+                </select>
+              </div>
+              <div class="medium-4 column">
+                <label>
+                  <select name="grades" class="select-grade">
+                    <option data-id="" value="">选择医院等级</option>
+                  </select>
+                </label>
+              </div>
+              <div class="medium-4 column">
+                <ul class="button-group ">
+                  <li><button class="button small">查询</button></li>
+                  <li><button type="button" onclick="show_new()" class="button small success">添加</button></li>
+                </ul>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+<% end %>
+
+
+<!---- new-->
+<div class="row new" id="new-hospital" style="display: none">
+  <div class=" medium-10 medium-centered large-10 large-centered columns" id="hospital-window">
+    <!--<div class="row">-->
+    <!--<div class="medium-10 medium-offset-2 large-10 large-offset-1 columns " style="font-size: 30px;">-->
+    <!--<span>医院信息管理</span> <span id="hospitals-name-zip">医院名称</span>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <form id="form-hospital" action="/information/create_hospital">
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>医院名称
+            <input type="text" name="name" placeholder="请输入医院名称">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-3 large-offset-1 medium-3 medium-offset-1 columns">
+          <label>地区：省
+            <select name="provinces" id="select-province">
+              <option data-id="" value="">请选择省/直辖市</option>
+            </select>
+          </label>
+        </div>
+        <div class="large-3 medium-3 columns">
+          <label>地区：市
+            <select name="cities" id="select-city">
+              <option data-id="" value="">请选择市</option>
+            </select>
+          </label>
+        </div>
+        <div class="large-4 medium-4 medium-pull-1 large-pull-1 columns">
+          <label>专业
+            <select name="majors" id="select-major">
+              <option data-id="" value="">请选择专业</option>
+            </select>
+          </label>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>选择医院等级
+            <select name="grades" id="select-grade">
+              <option data-id="" value="">请选择等级</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>医院地址
+            <input type="text" name="address" placeholder="请输入医院地址">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>联系电话
+            <input type="text" name="phone" placeholder="请输入医院的联系电话">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>医院简介
+            <textarea type="text" name="introduction" placeholder="请输入医院简介"></textarea>
+          </label>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns" style="text-align: center;">
+          <button id="submit-hospital" class="button tiny" type="button">保存并关闭</button>
+          <button type="button" onclick="show_index()" class="button tiny">取消此编辑</button>
+        </div>
+      </div>
+    </form>
+
+
+
+
+  </div></div>
+<!---- /new-->
+
+<!---- detail-->
+<div class="row detail" id="detail-hospital" style="display: none">
+  <div class=" medium-10 medium-centered large-10 large-centered columns hospital-window" >
+    <!--<div class="row">-->
+    <!--<div class="medium-10 medium-offset-2 large-10 large-offset-1 columns " style="font-size: 30px;">-->
+    <!--<span>医院信息管理</span> <span id="hospitals-name-zip">医院名称</span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <dl class="sub-nav">
+      <dt><a class="button tiny success" type="submit" href="#submit-edit-hospital">修改</a></dt>
+      <dt><button class="button tiny alert" onclick="show_index()" type="button">返回</button></dt>
+
+    </dl>
+
+    <form id="form-edit-hospital" action="/hospitals/edit">
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>医院名称
+            <input type="text" name="name" placeholder="请输入医院名称">
+            <input type="hidden" name="id" placeholder="请输入医院名称">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-3 large-offset-1 medium-3 medium-offset-1 columns">
+          <label>地区：省
+            <input name="provinces_name" type="text" readonly>
+          </label>
+        </div>
+        <div class="large-3 medium-3 columns">
+          <label>地区：市
+            <input name="cities_name" type="text" readonly>
+          </label>
+        </div>
+        <div class="large-4 medium-4 medium-pull-1 large-pull-1 columns">
+          <label>专业
+            <input name="majors_name" type="text" readonly>
+          </label>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>医院等级
+            <input name="grades_name" type="text" readonly>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>医院地址
+            <input type="text" name="address" >
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>联系电话
+            <input type="text" name="phone" >
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>医院简介
+            <textarea type="text" name="introduction" placeholder="请输入医院简介" ></textarea>
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>管理科室
+            <div id="manage-department">
+              <div class="departments selected">科室1 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div class="departments">科室2 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div class="departments">科室3 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div class="departments">科室4 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div class="departments">科室5 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div class="departments">科室6 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div id="add-department" onclick="$('#department-block').show()">添加科室</div>
+
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns" style="text-align: center;">
+          <button id="submit-edit-hospital" class="button tiny" type="submit">保存并关闭</button>
+          <button type="button" onclick="show_index()" class="button tiny">取消此编辑</button>
+        </div>
+      </div>
+    </form>
+
+
+
+
+  </div></div>
+<!---- /detail-->
+</div>
+
+<script type="text/coffeescript">
+  console.log(2)
+
+  $('#form-search-hospital').submit(
+      () ->
+        submit_form($(this),'filter',
+                (data) ->
+                    $('#dataset-hospital tbody tr').remove()
+                    if data.status
+                        for i in data.data
+                            tr = $('<tr></tr>')
+                            tr.append('<td style="display: none">'+ i['id'] + '</td>')
+                            tr.append('<td>'+ i['name'] + '</td>')
+                            tr.append('<td>'+ i['provinces_name'] + i['cities_name'] + '</td>')
+                            tr.append('<td>'+ i.majors_name + '</td>')
+                            tr.append('<td>'+ i.grades_name + '</td>')
+                            tr.append('<td><a class="button alert tiny">删除</a></td>')
+                            tr.click(() ->
+                                        id = parseInt($(this).find('td').eq(0).html())
+                                        show_detail(id,'/information/hospitals'))
+                            $('#dataset-hospital tbody').append(tr)
+
+
+        )
+        false
+  )
+  $('#form-edit-hospital').submit(
+          () ->
+              submit_form($(this),'hospitals',
+                (response)->
+                    if response.status
+                        $('#success-alerter').show()
+                        show_index()
+                        $('#form-search-hospital').submit()
+                        setTimeout(()->
+                                        $('#success-alerter').hide(500)
+                        ,2000)
+                    else
+                        $('#alert-info').html(response.error)
+                        $('#error-alerter').show()
+
+              )
+              false
+  )
+
+  $('#dataset-hospital tr').click(
+          () ->
+              id = parseInt($(this).find('td').eq(0).html())
+              show_detail(id,'/information/hospitals')
+  )
+
+</script>

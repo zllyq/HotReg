@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title><%= @title %></title>
+
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "vendor/modernizr" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style>
+
+<nav class="top-bar" data-topbar="" role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#">挂号平台管理系统</a></h1>
+    </li>
+    <li class="toggle-topbar menu-icon">
+      <a href=""><span>菜单</span></a>
+    </li>
+  </ul>
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right show-for-large-up">
+      <li class="active">
+        <a href="#">医院管理</a>
+      </li>
+      <li class="">
+        <a href="javascript:$('#department-block').show()" >科室管理</a>
+      </li>
+      <li class="">
+        <a href="javascript:$('#doctor-block').show()" >医生管理</a>
+      </li>
+      <li class="">
+        <a href="javascript:$('#doctor-block').show()" >用户审核</a>
+      </li>
+      <li class="has-dropdown not-click">
+        <a href="#">菜单</a>
+        <ul class="dropdown">
+          <li class="title back js-generated">
+            <h5><a href="javascript:void(0)">Back</a></h5>
+          </li>
+          <li class="parent-link show-for-small">
+            <a class="parent-link js-generated" href="#">Right Button Dropdown</a>
+          </li>
+          <li><a href="#">管理信息</a></li>
+          <li class="active"><a href="#">添加信息</a></li>
+          <li><a href="#">登出</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="right hide-for-large-up">
+      <li class="active"><a href="#">添加信息</a></li>
+      <li class="has-dropdown not-click">
+        <a href="#">菜单</a>
+        <ul class="dropdown">
+          <li class="title back js-generated">
+            <h5><a href="javascript:void(0)">Back</a></h5>
+          </li>
+          <li class="parent-link show-for-small">
+            <a class="parent-link js-generated" href="#">Right Dropdown</a>
+          </li>
+          <li>
+            <a href="#">管理信息</a>
+          </li>
+          <li class="active">
+            <a href="#">添加信息</a>
+          </li>
+          <li>
+            <a href="#">登出</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <!-- Left Nav Section -->
+    <ul class="left show-for-large-up">
+      <li>
+        <a href="#">管理信息</a>
+      </li>
+    </ul>
+  </section>
+</nav>
+<div id="container">
+<div class="alert-box success radius" id="success-alerter" style="display: none">
+  提交成功
+  <a href="#" class="close">&times;</a>
+</div>
+  <div data-alert class="alert-box alert radius small" id="error-alerter" style="display: none">
+    <lable id="alert-info"></lable>
+    <a href="#" class="close">&times;</a>
+  </div>
+
+<!--顶端提示-->
+<div class="row">
+
+    <%= yield :search %>
+</div>
+  <div id="yield">
+    <%= yield %>
+  </div>
+
+<script type="text/coffeescript">
+    console.log(1)
+    @show_new = (id) ->
+        if(id)
+            init_form(id)
+        $('.index').hide()
+        $('.detail').hide()
+        $('.new').show()
+    @show_index = () ->
+        $('.index').show()
+        $('.new').hide()
+        $('.detail').hide()
+    @show_detail = (id,url) ->
+        init_form_with_id($('.detail form'),{},url,id)
+        $('.index').hide()
+        $('.detail').show()
+
+    fill_up_select = (data,select) ->
+        select.find('option').not(':first').remove()
+        select.append($("<option value='#{line.name}' data-id=#{line.id}>#{line.name}</option>")) for line in data
+
+    load_init = () ->
+        ajax_post('/information/provinces',{},(data) -> fill_up_select(data.data,$('#select-province,.select-province')))
+        ajax_post('/information/majors',{},(data) -> fill_up_select(data.data,$('#select-major,.select-major')))
+        ajax_post('/information/grades',{},(data) -> fill_up_select(data.data,$('#select-grade,.select-grade')))
+        ajax_post('/information/hospitals',{},(data) -> fill_up_select(data.data,$('#select-hospital')))
+        binds()
+
+
+    binds = () ->
+        $('#submit-hospital').click(
+            () ->
+                thi = $(this)
+                thi.html('加载中')
+                thi.addClass('disabled')
+                submit_form($('#form-hospital'),'hospitals',
+                (data) ->
+                    submit_success(data)
+                    thi.html('保存并关闭')
+                    thi.removeClass('disabled')
+                    show_index()
+
+                )
+
+        )
+        $('#submit-department').click(
+            () ->
+                thi = $(this)
+                thi.html '加载中'
+                thi.addClass 'disabled'
+                submit_form($('#form-department'),'departments',
+                (data) ->
+                    submit_success(data)
+                    thi.html('保存并关闭')
+                    thi.removeClass('disabled')
+                    show_new('doctor')
+                )
+        )
+        $('#week-table>div').click(
+            ()->
+                if $(this).attr("class") is "selected"
+                    $(this).attr class:'unselected'
+                else
+                    $(this).attr class:'selected'
+        )
+        $('#month-table>div').click(
+            ()->
+                if $(this).attr("class") is "selected"
+                    $(this).attr class:'unselected'
+                else
+                    $(this).attr class:'selected'
+        )
+        $('select').change(
+            () ->
+                thi = $(this)
+                selected = thi.find("option")
+                selected.each () -> thi.data('id',$(this).data('id')) if $(this)[0].selected
+                ajax_post('/information/cities',{provinces_id:thi.data('id')},(data) -> fill_up_select(data.data,$('#select-city,.select-city'))) if (thi.attr('id') == 'select-province') || thi.attr('class') == 'select-province'
+        )
+
+    $(window).ready(load_init)
+
+    $('#set-calendar-window').css 'height':document.documentElement.clientHeight
+
+
+
+    init_list = () ->
+        week_day=$('#week-table>div')
+        month_day=$('#month-table>div')
+        for day,i in week_day
+            if((i is 5) or (i is 6) or (i is 12) or (i is 13))
+                $(day).attr class:'unselected'
+            else
+                $(day).attr class:'selected'
+        for day in month_day
+            $(day).attr class:'unselected'
+
+    @calculate_week_number = ()->
+        week_string=new Array()
+        week_number=""
+
+        week_day=$('#week-table>div')
+        for day,i in week_day
+            if $(day).attr('class') is 'selected'
+                week_number+="1"
+            else
+                week_number+="0"
+        #console.log(week_number)
+
+        for chars,i in week_number
+            if(i<7)
+                week_string[i*2]=chars
+            else
+                week_string[(i-7)*2+1]=chars
+
+        week_string=week_string.reverse()
+        calendar=week_string.join("")
+        #alert(calendar)
+        week_calendar=parseInt(calendar,2)
+        #console.log(week_calendar)
+        #        console.log(calculate_week_calendar_by_number(week_calendar))
+        return week_calendar
+
+
+    @calculate_week_calendar_by_number = (week_calendar)->
+        week_string=week_calendar.toString(2)
+        if week_string.length<14
+            i=week_string.length
+            week_string=week_string.split("").reverse().join("")
+            while i<14
+                week_string+="0"
+                i++
+        else
+            week_string=week_string.split("").reverse().join("")
+        week_arr=week_string.split("")
+        week_arr_new=new Array()
+        for str,i in week_arr
+            if((i%2)is 0)
+                week_arr_new[i/2]=str
+            else
+                week_arr_new[i+6]=str
+        week_calendar=week_arr_new.join("")
+        return week_calendar
+
+
+
+    @fill_week_table_by_week_calendar = (week_calendar)->
+        if(week_calendar is "")
+        else
+            week_day=$('#week-table>div')
+            string = calculate_week_calendar_by_number(week_calendar)
+            for char,i in string
+                if char is "0"
+                    $(week_day[i]).attr class:"unselected"
+                else
+                    $(week_day[i]).attr class:"selected"
+
+    @set_calendar_value = ()->
+        $('#calendar-input').val(calculate_week_number())
+        document.getElementById('calendar-input').value=calculate_week_number()
+    #alert($('#calendar-input').val())
+    #alert(document.getElementById('calendar-input').value)
+
+    init_list()
+    fill_week_table_by_week_calendar(parseInt(document.getElementById('calendar-input').value))
+</script></div>

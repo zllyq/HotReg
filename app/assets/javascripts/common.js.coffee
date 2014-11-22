@@ -36,6 +36,7 @@
   @submit_form = (form,names, success = null, error = null,url = form.attr 'action') ->
     ajax_post url, get_form_data(form,names), success, error
 
+
   ###提交成功###
   @submit_success = (data) ->
     console.log(data)
@@ -43,10 +44,29 @@
       $('#alert-info').html data.error
       $('#error-alerter').show()
     else
-      #$('#success-alerter').show()
+      $('#success-alerter').show()
       setTimeout(() ->
                   $('#success-alerter').hide(500)
       ,3000 )
+
+  ###用id初始化表单###
+  @init_form_with_id = (form,map,url,id,container = 'filter') ->
+    data = {}
+    data[container] = {id:id}
+    ajax_post(url,data,(data) -> init_form_with_object(form,map,data.data[0]))
+
+  ###用对象初始化表单####
+  @init_form_with_object = (form,map,object) ->
+    for k,v of object
+      if k in map
+        form.find('input[name='+ map[k] +'] ' + ', textarea[name='+ map[k] +']').val(v)
+      else
+        form.find('input[name=' + k + ']' + ', textarea[name=' + k + ']').val(v)
+
+
+  ###默认用对象###
+  @init_form = (form,map,object) ->
+    init_form_with_object(form,map,object)
 
   @test = () ->
     alert('cak')

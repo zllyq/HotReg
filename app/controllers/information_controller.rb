@@ -1,11 +1,16 @@
 class InformationController < ApplicationController
+
   def show
     @title = "在线挂号 | 医院信息维护"
     if login?
-      render 'index'
+      redirect_to '/hospital/'
     else
       redirect_to '/users/login'
     end
+  end
+
+  def edit
+
   end
 
   def provinces
@@ -79,7 +84,7 @@ class InformationController < ApplicationController
   # cities_id:城市id
   # major_id:专业id
   # page:页数
-  def hospitals
+  def hospitals(ajax = true)
     unless token?
       render json: {:status => 0,:error => 'token验证失败'}
       return false
@@ -92,8 +97,9 @@ class InformationController < ApplicationController
 
 
     begin
-      hospitals = Hospital.where(condition,filters).limit(filters[:limit]).offset(filters[:offset])
       sql =  Hospital.where(condition,filters).limit(filters[:limit]).offset(filters[:offset]).to_sql
+      hospitals = Hospital.where(condition,filters).limit(filters[:limit]).offset(filters[:offset])
+
       unless hospitals.empty?
         @json = {:status => 1,:data => hospitals}
         return true
@@ -102,8 +108,10 @@ class InformationController < ApplicationController
     rescue
       @json = {:status => 0,:error => $!}
     ensure
-      render json: @json
-      return @json[:status]
+      if ajax
+        render json: @json
+      end
+      return hospitals
     end
 
 
@@ -215,10 +223,17 @@ class InformationController < ApplicationController
     false
   end
 
-  ###
-  #
-  #
-  # ###
+
+=begin
+ @param:doctor
+ doctor.ids:医生编号
+ doctor.name:医生姓名
+ doctor.department_id:科室id
+ doctor.calendar_id:日历id
+ doctor.major_id:专业id
+ doctor.grade:医生等级
+ doctor.introduction:医生介绍
+=end
   def create_doctor
     unless admin?
       render json: {:status => 0,:error => '该用户没有创建权限'}
@@ -243,5 +258,24 @@ class InformationController < ApplicationController
 
   end
 
+  def edit_department
+
+  end
+
+  def edit_doctor
+
+  end
+
+  def delete_hospital
+
+  end
+
+  def delete_department
+
+  end
+
+  def delete_doctor
+
+  end
 
 end

@@ -1,0 +1,79 @@
+<nav class="top-bar" data-topbar="" role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#">挂号平台管理系统</a></h1>
+    </li>
+    <li class="toggle-topbar menu-icon">
+      <a href=""><span>菜单</span></a>
+    </li>
+  </ul>
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right show-for-large-up">
+      <li class="active">
+        <a href="#">管理医院</a>
+      </li>
+      <li class="">
+        <a href="javascript:" >管理科室</a>
+      </li>
+      <li class="">
+        <a href="javascript:" >管理医生</a>
+      </li>
+      <li class="">
+        <a href="javascript:" >管理用户</a>
+      </li>
+      <li class="has-dropdown not-click">
+        <a href="#">菜单</a>
+        <ul class="dropdown">
+          <li class="title back js-generated">
+            <h5><a href="javascript:void(0)">Back</a></h5>
+          </li>
+          <li class="parent-link show-for-small">
+            <a class="parent-link js-generated" href="#">Right Button Dropdown</a>
+          </li>
+          <li><a href="#">管理信息</a></li>
+          <li class="active"><a href="#">添加信息</a></li>
+          <li><a href="#">登出</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="right hide-for-large-up">
+      <li class="active"><a href="#">添加信息</a></li>
+      <li class="has-dropdown not-click">
+        <a href="#">菜单</a>
+        <ul class="dropdown">
+          <li class="title back js-generated">
+            <h5><a href="javascript:void(0)">Back</a></h5>
+          </li>
+          <li class="parent-link show-for-small">
+            <a class="parent-link js-generated" href="#">Right Dropdown</a>
+          </li>
+          <li>
+            <a href="#">管理信息</a>
+          </li>
+          <li class="active">
+            <a href="#">添加信息</a>
+          </li>
+          <li>
+            <a href="#">登出</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <!-- Left Nav Section -->
+    <ul class="left show-for-large-up">
+      <li>
+        <a href="#">管理信息</a>
+      </li>
+    </ul>
+  </section>
+</nav>
+
+
+
+<script type="text/coffeescript">
+    @show_new = (name) ->
+        $('.new').hide()
+        $('#' + name+'-block').show()
+        $('#new-' + name).show()
+</script>

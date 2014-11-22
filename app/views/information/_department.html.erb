@@ -1,0 +1,66 @@
+<div class="full-screen-blur" id="department-block">
+  <div class="row new" id="new-department">
+    <div class=" medium-10 medium-centered large-10 large-centered columns" id="department-window">
+      <!--<div class="row">-->
+      <!--<div class="medium-10 medium-offset-2 large-10 large-offset-1 columns " style="font-size: 30px;">-->
+      <!--<span>科室信息管理</span> <span id="department-name-zip">科室名称</span>-->
+      <!--</div>-->
+      <!--</div>-->
+      <form id="form-department" action="/information/create_department">
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns">
+            <label>科室名称
+              <input type="text" name="name" placeholder="请输入科室名称" required>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns">
+            <label>科室简介
+              <textarea name="introduction" placeholder="请输入科室简介"></textarea>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-5 medium-offset-1 large-5 large-offset-1 columns">
+            <label>所属医院
+              <select name="department-level" id="select-hospital">
+                <option value="null">请选择医院</option>
+
+              </select>
+            </label>
+          </div>
+
+          <div class="medium-5 medium-pull-1 large-5 large-pull-1  columns">
+            <label>编号
+              <input name="ids" type="text" placeholder="请输入科室编号" required>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns">
+            <label>管理医生
+              <div id="manage-doctor">
+                <div class="doctors selected">szmSabby <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+                <div class="doctors">医生2 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+                <div class="doctors">医生3 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+                <div class="doctors">医生4 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+                <div class="doctors">医生5 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+                <div class="doctors">医生6 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+                <div class="doctors">名字很长君 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+                <div id="add-doctor" class="button" onclick="show_new('doctor')">添加医生</div>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns" style="text-align: center;">
+            <button class="button small" type="button" id="submit-department" onclick="$('#department-block').hide()">保存并关闭</button>
+            <button class="button small">取消此编辑</button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

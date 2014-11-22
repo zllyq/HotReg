@@ -1,0 +1,132 @@
+<div class="row index" id="index-hospital">
+  <table class="row">
+    <thead>
+        <tr>
+          <th>名称</th>
+          <th>地区</th>
+          <th>专业</th>
+          <th>等级</th>
+        </tr>
+    </thead>
+    <thead>
+        <% @hospitals.each do |h| %>
+          <tr>
+            <td>
+              <%= h.name %>
+            </td>
+            <td>
+              <%= h.provinces_name + h.city_name %>
+            </td>
+            <td>
+              <%= h.majors_name %>
+            </td>
+            <td>
+              <%= h.grades_name %>
+            </td>
+          </tr>
+        <% end %>
+    </thead>
+  </table>
+</div>
+
+
+<div class="row new" id="new-hospital" style="display: none">
+  <div class=" medium-10 medium-centered large-10 large-centered columns" id="hospital-window">
+    <!--<div class="row">-->
+    <!--<div class="medium-10 medium-offset-2 large-10 large-offset-1 columns " style="font-size: 30px;">-->
+    <!--<span>医院信息管理</span> <span id="hospitals-name-zip">医院名称</span>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <form id="form-hospital" action="/information/create_hospital">
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>医院名称
+            <input type="text" name="name" placeholder="请输入医院名称">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-3 large-offset-1 medium-3 medium-offset-1 columns">
+          <label>地区：省
+            <select name="provinces" id="select-province">
+              <option value="null">请选择省/直辖市</option>
+            </select>
+          </label>
+        </div>
+        <div class="large-3 medium-3 columns">
+          <label>地区：市
+            <select name="cities" id="select-city">
+              <option value="null">请选择市</option>
+            </select>
+          </label>
+        </div>
+        <div class="large-4 medium-4 medium-pull-1 large-pull-1 columns">
+          <label>专业
+            <select name="majors" id="select-major">
+              <option value="null">请选择专业</option>
+            </select>
+          </label>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>选择医院等级
+            <select name="grades" id="select-grade">
+              <option value="null">请选择等级</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>医院地址
+            <input type="text" name="address" placeholder="请输入医院地址">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>联系电话
+            <input type="text" name="phone" placeholder="请输入医院的联系电话">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>医院简介
+            <textarea type="text" name="introduction" placeholder="请输入医院简介"></textarea>
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>管理科室
+            <div id="manage-department">
+              <div class="departments selected">科室1 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div class="departments">科室2 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div class="departments">科室3 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div class="departments">科室4 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div class="departments">科室5 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div class="departments">科室6 <span class="rm-department">删除</span> <span class="edit-department">修改</span> </div>
+              <div id="add-department" onclick="$('#department-block').show()">添加科室</div>
+
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns" style="text-align: center;">
+          <button id="submit-hospital" class="button tiny" type="button">保存并关闭</button>
+          <a href="#" class="button tiny">取消此编辑</a>
+        </div>
+      </div>
+    </form>
+
+
+
+
+  </div>
+</div>

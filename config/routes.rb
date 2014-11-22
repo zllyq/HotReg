@@ -18,7 +18,11 @@ Rails.application.routes.draw do
   post 'information/create_department' => 'information#create_department'
   post 'information/create_doctor' => 'information#create_doctor'
   get 'information/auto_home' => 'information#auto_home'
+  get 'information/edit' => 'information#edit'
   resource :information
+  post 'hospital' => 'hospitals#show'
+  post 'hospitals/edit' => 'hospitals#edit'
+  resource :hospital
 
   resource :order
   # The priority is based upon order of creation: first created -> highest priority.
