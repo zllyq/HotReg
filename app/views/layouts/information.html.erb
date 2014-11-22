@@ -145,21 +145,7 @@
 
 
     binds = () ->
-        $('#submit-hospital').click(
-            () ->
-                thi = $(this)
-                thi.html('加载中')
-                thi.addClass('disabled')
-                submit_form($('#form-hospital'),'hospitals',
-                (data) ->
-                    submit_success(data)
-                    thi.html('保存并关闭')
-                    thi.removeClass('disabled')
-                    show_index()
 
-                )
-
-        )
         $('#submit-department').click(
             () ->
                 thi = $(this)

@@ -2,6 +2,7 @@ class Hospital < ActiveRecord::Base
   belongs_to :grade
   belongs_to :province
   belongs_to :city
+  has_many :department
 
   def compare para
     begin

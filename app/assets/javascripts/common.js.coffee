@@ -15,6 +15,18 @@
       }
     )
 
+  ###发送delete请求###
+  @ajax_delete = (url = '#', data = null, success_fun = submit_success, error_fun = (a,b,c) -> console.log a+b+c) ->
+    $.ajax({
+      url:url,
+      data:data,
+      async:true
+      type:'DELETE'
+      dataType:'json'
+      success:(response) -> success_fun(response)
+      error:error_fun
+    })
+
   ###获取表单数据###
   @get_form_data = (form,name) ->
     inputs = form.find('input,textarea')
@@ -64,9 +76,10 @@
         form.find('input[name=' + k + ']' + ', textarea[name=' + k + ']').val(v)
 
 
-  ###默认用对象###
+  ###默认用对象初始表单###
   @init_form = (form,map,object) ->
     init_form_with_object(form,map,object)
+
 
   @test = () ->
     alert('cak')

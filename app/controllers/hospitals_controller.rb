@@ -31,4 +31,21 @@ class HospitalsController < InformationController
       current
     end
   end
+
+  def destroy
+    unless admin?
+      render json: {status:0, error:'没有删除权限'}
+    end
+    begin
+      id = params[:id]
+      hospital = Hospital.find(id)
+      hospital.destroy!
+      @json = {status:1}
+    rescue
+      @json = {status:0, error:'删除失败'}
+    ensure
+      render json: @json
+      return id
+    end
+  end
 end

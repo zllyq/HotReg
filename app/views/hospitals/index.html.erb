@@ -29,7 +29,7 @@
               <%= h.grades_name %>
             </td>
             <td>
-              <a class="button alert tiny">删除</a>
+              <button type="button" class="button alert tiny" onclick="delete_hospital(event,<%= h.id %>)">删除</button>
             </td>
           </tr>
       <% end %>
@@ -295,7 +295,7 @@
                             tr.append('<td>'+ i['provinces_name'] + i['cities_name'] + '</td>')
                             tr.append('<td>'+ i.majors_name + '</td>')
                             tr.append('<td>'+ i.grades_name + '</td>')
-                            tr.append('<td><a class="button alert tiny">删除</a></td>')
+                            tr.append('<td><button type="button" class="button alert tiny" onclick="delete_hospital(event,' + i['id'] + ')">删除</button></td>')
                             tr.click(() ->
                                         id = parseInt($(this).find('td').eq(0).html())
                                         show_detail(id,'/information/hospitals'))
@@ -304,6 +304,22 @@
 
         )
         false
+  )
+  $('#submit-hospital').click(
+      () ->
+          thi = $(this)
+          thi.html('加载中')
+          thi.addClass('disabled')
+          submit_form($('#form-hospital'),'hospitals',
+          (data) ->
+              submit_success(data)
+              thi.html('保存并关闭')
+              thi.removeClass('disabled')
+              $('#form-search-hospital').submit()
+              show_index()
+
+          )
+
   )
   $('#form-edit-hospital').submit(
           () ->
@@ -323,6 +339,19 @@
               )
               false
   )
+
+  @delete_hospital = (event,id) ->
+    event.stopPropagation()
+    sure = confirm('你确认删除该医院以及关联科室吗(删除后无法恢复)?')
+    unless sure
+        return false
+    ajax_delete('/hospital',{id:id},
+            (response) ->
+                submit_success(response)
+                if response.status
+                    $('#form-search-hospital').submit()
+    )
+
 
   $('#dataset-hospital tr').click(
           () ->
