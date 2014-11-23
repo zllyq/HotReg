@@ -38,8 +38,8 @@ public
   end
 
 protected
-  def conditioner(para)
-    filters = {:limit => 5,offset:0}
+  def conditioner(para,table_name = '')
+    filters = {:limit => 20,offset:0}
     condition = '1 = 1 '
 
     if para.nil?
@@ -48,13 +48,21 @@ protected
 
     unless para[:id].blank?
       filters[:id] = para[:id]
-      condition += 'AND id = :id'
+      if table_name.blank?
+        condition += 'AND id = :id'
+      else
+        condition += ('AND ' + table_name + '.id = :id')
+      end
       return [filters,condition]
     end
 
     unless para[:name].blank?
       filters[:name] = '%' + para[:name] + '%'
-      condition += 'AND name LIKE :name '
+      if table_name.blank?
+        condition += 'AND name LIKE :name '
+      else
+        condition += ('AND ' + table_name + '.name LIKE :name ')
+      end
     end
 
     unless para[:provinces_id].blank?
@@ -80,6 +88,14 @@ protected
     unless para[:hospitals_id].blank?
       condition += ' AND hospital_id = :hospital_id'
       filters[:hospital_id] = para[:hospitals_id]
+    end
+    unless para[:ids].blank?
+      filters[:ids] = '%' + para[:ids] + '%'
+      if table_name.blank?
+        condition += 'AND ids LIKE :ids'
+      else
+        condition += 'AND ' + table_name + '.ids LIKE :ids'
+      end
     end
 
     #医院专属

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post 'information/cities' => 'information#cities'
   post 'information/grades' => 'information#grades'
   post 'information/hospitals' => 'information#hospitals'
-
+  post 'information/departments' => 'information#departments'
   post 'information/create_hospital' => 'information#create_hospital'
   post 'information/create_department' => 'information#create_department'
   post 'information/create_doctor' => 'information#create_doctor'
@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   post 'hospital' => 'hospitals#show'
   post 'hospitals/edit' => 'hospitals#edit'
   resource :hospital
+  post 'department/edit' => 'departments#edit'
+  resource :department
 
   resource :order
   # The priority is based upon order of creation: first created -> highest priority.

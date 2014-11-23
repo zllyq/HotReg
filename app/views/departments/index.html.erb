@@ -1,0 +1,225 @@
+<div class="row index" id="index-department">
+  <div class="medium-10 medium-centered large-10 large-centered columns">
+    <table id="dataset-department" style="width: 100%">
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>名称</th>
+          <th>所属医院</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+<!--new-->
+  <div class="row new" id="new-department" style="display: none">
+    <div class=" medium-10 medium-centered large-10 large-centered columns" id="department-window">
+      <!--<div class="row">-->
+      <!--<div class="medium-10 medium-offset-2 large-10 large-offset-1 columns " style="font-size: 30px;">-->
+      <!--<span>科室信息管理</span> <span id="department-name-zip">科室名称</span>-->
+      <!--</div>-->
+      <!--</div>-->
+      <form id="form-department" action="/information/create_department">
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns">
+            <label>科室名称
+              <input type="text" name="name" placeholder="请输入科室名称" required>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns">
+            <label>科室简介
+              <textarea name="introduction" placeholder="请输入科室简介"></textarea>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-5 medium-offset-1 large-5 large-offset-1 columns">
+            <label>所属医院
+              <select name="hospitals" id="select-hospital">
+                <option value="">请选择医院</option>
+
+              </select>
+            </label>
+          </div>
+
+          <div class="medium-5 medium-pull-1 large-5 large-pull-1  columns">
+            <label>编号
+              <input name="ids" type="text" placeholder="请输入科室编号" required>
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="medium-10 medium-centered large-10 large-centered columns" style="text-align: center;">
+            <button class="button small" type="button" id="submit-department" onclick="$('#department-block').hide()">保存并关闭</button>
+            <button class="button small" type="button" onclick="show_index()">取消此编辑</button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+<!--/new-->
+
+<!--detail-->
+<div class="row detail" id="new-department" style="display: none">
+  <div class=" medium-10 medium-centered large-10 large-centered columns" id="department-window">
+    <!--<div class="row">-->
+    <!--<div class="medium-10 medium-offset-2 large-10 large-offset-1 columns " style="font-size: 30px;">-->
+    <!--<span>科室信息管理</span> <span id="department-name-zip">科室名称</span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <form id="form-detail-department" action="/department/edit">
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>科室名称
+            <input type="text" name="name" placeholder="请输入科室名称" required>
+            <input type="hidden" name="id" placeholder="请输入科室名称">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>科室简介
+            <textarea name="introduction" placeholder="请输入科室简介"></textarea>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-5 medium-offset-1 large-5 large-offset-1 columns">
+          <label>所属医院
+            <input type="text" name="hospitals_name" readonly>
+          </label>
+        </div>
+
+        <div class="medium-5 medium-pull-1 large-5 large-pull-1  columns">
+          <label>编号
+            <input name="ids" type="text" placeholder="请输入科室编号" required>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns">
+          <label>管理医生
+            <div id="manage-doctor">
+              <div class="doctors selected">szmSabby <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+              <div class="doctors">医生2 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+              <div class="doctors">医生3 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+              <div class="doctors">医生4 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+              <div class="doctors">医生5 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+              <div class="doctors">医生6 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+              <div class="doctors">名字很长君 <span class="rm-doctor">删除</span> <span class="edit-doctor">修改</span> </div>
+              <div id="add-doctor" class="button" onclick="show_new('doctor')">添加医生</div>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 medium-centered large-10 large-centered columns" style="text-align: center;">
+          <button class="button small" type="submit">保存并关闭</button>
+          <button class="button small" type="button" onclick="show_index()">取消此编辑</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+<!--/detail-->
+<% content_for :search do %>
+  <div class=" medium-10 medium-centered large-10 large-centered columns" id="search-department" style="margin-bottom: 0">
+    <div class="row">
+      <div class="medium-10 medium-centered large-10 large-centered columns">
+         <form action="/information/departments" id="form-search-department">
+           <div class="row">
+              <div class="medium-4 column">
+                <label>
+                  <input type="text" name="name" placeholder="科室名称">
+                </label>
+              </div>
+              <div class="medium-4 column">
+                <label>
+                    <input type="text" name="ids" placeholder="科室编号">
+                </label>
+              </div>
+              <div class="medium-4 column">
+                <label>
+                  <select name="hospitals" class="select-hospital">
+                    <option value="" data-id="">请选择医院</option>
+                  </select>
+                </label>
+              </div>
+           </div>
+           <div class="row">
+             <div class="small-4 column">
+               <button class="button expand small">查询</button>
+             </div>
+             <div class="small-4 column">
+               <button class="button expand small success" type="button" onclick="show_new">添加</button>
+             </div>
+           </div>
+         </form>
+      </div>
+    </div>
+  </div>
+ <% end %>
+<script type="text/coffeescript">
+    console.log(2)
+    $('#form-search-department').submit(
+        ()->
+            submit_form($(this),'filter',
+                (response) ->
+                    if response.status
+                        $('#dataset-department').find('tbody tr').remove()
+                        for i in response.data
+                            tr = $('<tr style="cursor: pointer"></tr>')
+                            tr.append('<td style="display: none">'+ i['id'] + '</td>')
+                            tr.append($('<td>'+ i['ids'] + '</td>'))
+                            tr.append($('<td>'+ i['name'] + '</td>'))
+                            tr.append($('<td>'+ i['hospitals_name'] + '</td>'))
+                            tr.append($('<td ><button class="button tiny alert" onclick="delete_department(event,' + i['id'] + ')">删除</button>'+''+'</td>'))
+                            tr.click(() ->
+                                id = parseInt($(this).find('td').eq(0).html())
+                                show_detail(id,'/information/departments'))
+                            $('#dataset-department').find('tbody').append(tr)
+            )
+            false
+    )
+    $('#submit-department').click(
+        () ->
+            thi = $(this)
+            thi.html '加载中'
+            thi.addClass 'disabled'
+            submit_form($('#form-department'),'departments',
+            (data) ->
+                submit_success(data)
+                thi.html('保存并关闭')
+                thi.removeClass('disabled')
+                $('#form-search-department').submit()
+                show_index()
+            )
+    )
+    $('#form-detail-department').submit(
+            () ->
+                submit_form($(this),'departments',
+                        (response) ->
+                            submit_success(response)
+                            show_index()
+                )
+                false
+    )
+    @delete_department = (e,id) ->
+        e.stopPropagation()
+        ajax_delete('department',{id:id},
+                (response)->
+                    submit_success(response)
+                    $('#form-search-department').submit()
+        ) if confirm('删除后无法恢复，你确认删除该科室以及关联医生吗？')
+
+    $('#form-search-department').submit()
+</script>

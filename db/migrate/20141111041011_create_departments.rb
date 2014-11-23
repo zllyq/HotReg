@@ -3,7 +3,7 @@ class CreateDepartments < ActiveRecord::Migration
     create_table :departments do |t|
       t.string :ids,:unique => true
       t.string :name
-      t.belongs_to :Hospital
+      t.belongs_to :hospital
       t.text :introduction
 
       t.timestamps

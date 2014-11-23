@@ -38,17 +38,17 @@
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right show-for-large-up">
-      <li class="active">
-        <a href="#">医院管理</a>
+      <li <% if @active == 1 %> class="active" <% end %>>
+        <a href="javascript:window.location.href='/hospital'">医院管理</a>
       </li>
-      <li class="">
-        <a href="javascript:$('#department-block').show()" >科室管理</a>
+      <li <% if @active == 2 %> class="active" <% end %>>
+        <a href="javascript:window.location.href='/department'" >科室管理</a>
       </li>
-      <li class="">
-        <a href="javascript:$('#doctor-block').show()" >医生管理</a>
+      <li <% if @active == 3 %> class="active" <% end %>>
+        <a href="javascript:window.location.href='/doctor'" >医生管理</a>
       </li>
-      <li class="">
-        <a href="javascript:$('#doctor-block').show()" >用户审核</a>
+      <li <% if @active == 4 %> class="active" <% end %>>
+        <a href="javascript:window.location.href='/user'" >用户审核</a>
       </li>
       <li class="has-dropdown not-click">
         <a href="#">菜单</a>
@@ -97,13 +97,15 @@
   </section>
 </nav>
 <div id="container">
-<div class="alert-box success radius" id="success-alerter" style="display: none">
-  提交成功
-  <a href="#" class="close">&times;</a>
-</div>
-  <div data-alert class="alert-box alert radius small" id="error-alerter" style="display: none">
-    <lable id="alert-info"></lable>
-    <a href="#" class="close">&times;</a>
+  <div class="small-8 small-offset-2">
+    <div class="alert-box success radius" id="success-alerter" style="display: none">
+      提交成功
+      <a href="#" class="close">&times;</a>
+    </div>
+    <div data-alert class="alert-box alert radius small" id="error-alerter" style="display: none">
+      <lable id="alert-info"></lable>
+      <a href="#" class="close">&times;</a>
+    </div>
   </div>
 
 <!--顶端提示-->
@@ -140,7 +142,7 @@
         ajax_post('/information/provinces',{},(data) -> fill_up_select(data.data,$('#select-province,.select-province')))
         ajax_post('/information/majors',{},(data) -> fill_up_select(data.data,$('#select-major,.select-major')))
         ajax_post('/information/grades',{},(data) -> fill_up_select(data.data,$('#select-grade,.select-grade')))
-        ajax_post('/information/hospitals',{},(data) -> fill_up_select(data.data,$('#select-hospital')))
+        ajax_post('/information/hospitals',{},(data) -> fill_up_select(data.data,$('#select-hospital,.select-hospital ')))
         binds()
 
 

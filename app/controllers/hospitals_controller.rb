@@ -1,6 +1,7 @@
 class HospitalsController < InformationController
   def show
     @hospitals = hospitals(false)
+    @active = 1
     #here = @hospitals[1].province
     render 'index' ,:layout => 'information'
   end

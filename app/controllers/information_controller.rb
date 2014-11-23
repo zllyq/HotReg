@@ -97,7 +97,7 @@ class InformationController < ApplicationController
 
 
     begin
-      sql =  Hospital.where(condition,filters).limit(filters[:limit]).offset(filters[:offset]).to_sql
+      #sql =  Hospital.where(condition,filters).limit(filters[:limit]).offset(filters[:offset]).to_sql
       hospitals = Hospital.where(condition,filters).limit(filters[:limit]).offset(filters[:offset])
 
       unless hospitals.empty?
@@ -121,6 +121,7 @@ class InformationController < ApplicationController
   #@param:filter
   # hospitals_id:所属医院
   # name:科室名称
+  # ids: 科室编号
   # page:页数
   #
   def departments
@@ -130,11 +131,11 @@ class InformationController < ApplicationController
     end
 
     para = params[:filter]
-    _filer = conditioner(para)
+    _filer = conditioner(para,'departments')
     filters = _filer[0]
     condition = _filer[1]
-    data = Department.where(condition,filters).limit(filters[:limit]).offset(filters[:offset])
-
+    #sql = Department.select("departments.*,hospitals.name hospitals_name").joins(:hospital).where(condition,filters).limit(filters[:limit]).offset(filters[:offset]).to_sql
+    data = Department.select("departments.*,hospitals.name hospitals_name").joins(:hospital).where(condition,filters).limit(filters[:limit]).offset(filters[:offset])
     if data.empty?
       @json = {status:0,error:'没有这样的科室'}
     else
@@ -211,15 +212,18 @@ class InformationController < ApplicationController
       return false
     end
 
-    department = Department.create
-    department.init(params[:departments])
+    begin
+      department = Department.create
+      department.init(params[:departments])
 
-    if department.save
-      render :json => {:status => 1}
-      return true
+      if department.save
+        render :json => {:status => 1}
+        return true
+      end
+    rescue
+      render :json => {:status => 0, :error => '保存失败'}
+      return false
     end
-
-    render :json => {:status => 0, :error => '保存失败'}
     false
   end
 
